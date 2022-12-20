@@ -1,0 +1,42 @@
+<template>
+    <!-- The lightning-layout component is used to inline radio and ? buttons -->
+    <div class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+        <lightning-layout>
+
+            <lightning-layout-item flexibility="auto" padding="horizontal-small">
+                <div class="custom-box slds-box slds-p-around_medium slds-text-align_center">
+                    <lightning-radio-group label="Radio Group"
+                    options={options}
+                    value={value}
+                    type="button">
+                  </lightning-radio-group>
+                </div>
+            </lightning-layout-item>
+            
+            <!-- PC/laptop devices - pdf in modal -->
+            <template if:true={largeFormFactor}>
+                <lightning-layout-item flexibility="auto" padding="around-large">
+                    <lightning-button variant="base" label="Reference" title="CTU Code reference" icon-name="utility:help" icon-position="right" class="slds-m-left_x-small" onclick={handleClick}></lightning-button>
+                </lightning-layout-item>
+            </template>
+
+            <!-- Phone/tablet - download pdf link -->
+            <template if:false={largeFormFactor}>
+                <lightning-layout-item flexibility="auto" padding="around-large">
+                    <form action={refCTU}>
+                        <lightning-button variant="base" label="Download reference" title="CTU Code reference" icon-name="utility:help" icon-position="right" class="slds-m-left_x-small" onclick={handleClick}></lightning-button>
+                    </form>
+                </lightning-layout-item>    
+            </template>
+
+        </lightning-layout>
+    </div>
+<!-- 
+    <template if:true={largeFormFactor}>
+        <iframe src={refCTU} height=100%” width=100%”></iframe>
+    </template>
+    <template if:false={largeFormFactor}>
+        <a href={refCTU} target="_blank"></a>
+    </template>
+-->   
+</template>
