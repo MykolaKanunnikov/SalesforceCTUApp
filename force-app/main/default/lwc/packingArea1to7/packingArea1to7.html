@@ -1,0 +1,240 @@
+<template>
+    <!-- This component contains all items of the 1st checklist stage -->
+    <div class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+        <lightning-layout horizontal-align="spread">
+
+            <lightning-layout-item flexibility="auto" padding="horizontal-small">
+                <lightning-radio-group label="1. Is the type of container appropriate for the cargo to be carried?"
+                    options={options} value={value} type="button">
+                </lightning-radio-group>
+            </lightning-layout-item>
+
+            <!-- PC/laptop devices - pdf in modal -->
+            <template if:true={largeFormFactor}>
+                <lightning-layout-item flexibility="auto" padding="around-large">
+                    <lightning-button variant="base" label="Reference" title="CTU Code reference"
+                        icon-name="utility:help" icon-position="right" class="slds-m-left_x-small"
+                        onclick={handleClick}></lightning-button>
+                </lightning-layout-item>
+            </template>
+
+            <!-- Phone/tablet - download pdf link -->
+            <template if:false={largeFormFactor}>
+                <lightning-layout-item flexibility="auto" padding="around-large">
+                    <form action={refCTU}>
+                        <lightning-button variant="base" label="Download reference" title="CTU Code reference"
+                            icon-name="utility:help" icon-position="right" class="slds-m-left_x-small"
+                            onclick={handleClick}></lightning-button>
+                    </form>
+                </lightning-layout-item>
+            </template>
+
+        </lightning-layout>
+    </div>
+
+    <!-- 2 -->
+    <div class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+        <lightning-layout horizontal-align="spread">
+
+            <lightning-layout-item flexibility="auto" padding="horizontal-small">
+                <lightning-radio-group label="2. Is the container positioned so that it can be accessed safely?"
+                    options={options} value={value} type="button">
+                </lightning-radio-group>
+            </lightning-layout-item>
+
+            <!-- PC/laptop devices - pdf in modal -->
+            <template if:true={largeFormFactor}>
+                <lightning-layout-item flexibility="auto" padding="around-large">
+                    <lightning-button variant="base" label="Reference" title="CTU Code reference"
+                        icon-name="utility:help" icon-position="right" class="slds-m-left_x-small"
+                        onclick={handleClick}></lightning-button>
+                </lightning-layout-item>
+            </template>
+
+            <!-- Phone/tablet - download pdf link -->
+            <template if:false={largeFormFactor}>
+                <lightning-layout-item flexibility="auto" padding="around-large">
+                    <form action={refCTU}>
+                        <lightning-button variant="base" label="Download reference" title="CTU Code reference"
+                            icon-name="utility:help" icon-position="right" class="slds-m-left_x-small"
+                            onclick={handleClick}></lightning-button>
+                    </form>
+                </lightning-layout-item>
+            </template>
+
+        </lightning-layout>
+    </div>
+
+    <!-- 3 -->
+    <div class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+        <lightning-layout horizontal-align="spread">
+
+            <lightning-layout-item flexibility="auto" padding="horizontal-small">
+                <lightning-radio-group
+                    label="3. Have steps been taken to avoid contamination of the packing area by pests?"
+                    options={options} value={value} type="button">
+                </lightning-radio-group>
+            </lightning-layout-item>
+
+            <!-- PC/laptop devices - pdf in modal -->
+            <template if:true={largeFormFactor}>
+                <lightning-layout-item flexibility="auto" padding="around-large">
+                    <lightning-button variant="base" label="Reference" title="CTU Code reference"
+                        icon-name="utility:help" icon-position="right" class="slds-m-left_x-small"
+                        onclick={handleClick}></lightning-button>
+                </lightning-layout-item>
+            </template>
+
+            <!-- Phone/tablet - download pdf link -->
+            <template if:false={largeFormFactor}>
+                <lightning-layout-item flexibility="auto" padding="around-large">
+                    <form action={refCTU}>
+                        <lightning-button variant="base" label="Download reference" title="CTU Code reference"
+                            icon-name="utility:help" icon-position="right" class="slds-m-left_x-small"
+                            onclick={handleClick}></lightning-button>
+                    </form>
+                </lightning-layout-item>
+            </template>
+
+        </lightning-layout>
+    </div>
+
+    <!-- 4 -->
+    <div class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+        <lightning-layout horizontal-align="spread">
+
+            <lightning-layout-item flexibility="auto" padding="horizontal-small">
+                <lightning-radio-group
+                    label="4. Has a packing plan been prepared showing the arrangements of goods in the container?"
+                    options={options} value={value} type="button">
+                </lightning-radio-group>
+            </lightning-layout-item>
+
+            <!-- PC/laptop devices - pdf in modal -->
+            <template if:true={largeFormFactor}>
+                <lightning-layout-item flexibility="auto" padding="around-large">
+                    <lightning-button variant="base" label="Reference" title="CTU Code reference"
+                        icon-name="utility:help" icon-position="right" class="slds-m-left_x-small"
+                        onclick={handleClick}></lightning-button>
+                </lightning-layout-item>
+            </template>
+
+            <!-- Phone/tablet - download pdf link -->
+            <template if:false={largeFormFactor}>
+                <lightning-layout-item flexibility="auto" padding="around-large">
+                    <form action={refCTU}>
+                        <lightning-button variant="base" label="Download reference" title="CTU Code reference"
+                            icon-name="utility:help" icon-position="right" class="slds-m-left_x-small"
+                            onclick={handleClick}></lightning-button>
+                    </form>
+                </lightning-layout-item>
+            </template>
+
+        </lightning-layout>
+    </div>
+
+    <!-- 5 -->
+    <div class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+        <lightning-layout horizontal-align="spread">
+
+            <lightning-layout-item flexibility="auto" padding="horizontal-small">
+                <lightning-radio-group
+                    label="5. Are the maximum permitted payload limits of the container sufficient for the intended load?"
+                    options={options} value={value} type="button">
+                </lightning-radio-group>
+            </lightning-layout-item>
+
+            <!-- PC/laptop devices - pdf in modal -->
+            <template if:true={largeFormFactor}>
+                <lightning-layout-item flexibility="auto" padding="around-large">
+                    <lightning-button variant="base" label="Reference" title="CTU Code reference"
+                        icon-name="utility:help" icon-position="right" class="slds-m-left_x-small"
+                        onclick={handleClick}></lightning-button>
+                </lightning-layout-item>
+            </template>
+
+            <!-- Phone/tablet - download pdf link -->
+            <template if:false={largeFormFactor}>
+                <lightning-layout-item flexibility="auto" padding="around-large">
+                    <form action={refCTU}>
+                        <lightning-button variant="base" label="Download reference" title="CTU Code reference"
+                            icon-name="utility:help" icon-position="right" class="slds-m-left_x-small"
+                            onclick={handleClick}></lightning-button>
+                    </form>
+                </lightning-layout-item>
+            </template>
+
+        </lightning-layout>
+    </div>
+
+    <!-- 6 -->
+    <div class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+        <lightning-layout horizontal-align="spread">
+
+            <lightning-layout-item flexibility="auto" padding="horizontal-small">
+                <lightning-radio-group
+                    label="6. Do all timber pallets, dunnage or other wood packing material meet ISPM-15 standards and show the required markings?"
+                    options={options} value={value} type="button">
+                </lightning-radio-group>
+            </lightning-layout-item>
+
+            <!-- PC/laptop devices - pdf in modal -->
+            <template if:true={largeFormFactor}>
+                <lightning-layout-item flexibility="auto" padding="around-large">
+                    <lightning-button variant="base" label="Reference" title="CTU Code reference"
+                        icon-name="utility:help" icon-position="right" class="slds-m-left_x-small"
+                        onclick={handleClick}></lightning-button>
+                </lightning-layout-item>
+            </template>
+
+            <!-- Phone/tablet - download pdf link -->
+            <template if:false={largeFormFactor}>
+                <lightning-layout-item flexibility="auto" padding="around-large">
+                    <form action={refCTU}>
+                        <lightning-button variant="base" label="Download reference" title="CTU Code reference"
+                            icon-name="utility:help" icon-position="right" class="slds-m-left_x-small"
+                            onclick={handleClick}></lightning-button>
+                    </form>
+                </lightning-layout-item>
+            </template>
+
+        </lightning-layout>
+    </div>
+
+    <!-- 7 -->
+    <div class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+        <lightning-layout horizontal-align="spread">
+
+            <lightning-layout-item flexibility="auto" padding="horizontal-small">
+                <lightning-radio-group
+                    label="7. Have staff assigned to pack the container been trained to understand the practices of safe packing and securing and avoidance of pest contamination?"
+                    options={options} value={value} type="button">
+                </lightning-radio-group>
+            </lightning-layout-item>
+
+            <!-- PC/laptop devices - pdf in modal -->
+            <template if:true={largeFormFactor}>
+                <lightning-layout-item flexibility="auto" padding="around-large">
+                    <lightning-button variant="base" label="Reference" title="CTU Code reference"
+                        icon-name="utility:help" icon-position="right" class="slds-m-left_x-small"
+                        onclick={handleClick}></lightning-button>
+                </lightning-layout-item>
+            </template>
+
+            <!-- Phone/tablet - download pdf link -->
+            <template if:false={largeFormFactor}>
+                <lightning-layout-item flexibility="auto" padding="around-large">
+                    <form action={refCTU}>
+                        <lightning-button variant="base" label="Download reference" title="CTU Code reference"
+                            icon-name="utility:help" icon-position="right" class="slds-m-left_x-small"
+                            onclick={handleClick}></lightning-button>
+                    </form>
+                </lightning-layout-item>
+            </template>
+
+        </lightning-layout>
+    </div>
+
+
+
+</template>
