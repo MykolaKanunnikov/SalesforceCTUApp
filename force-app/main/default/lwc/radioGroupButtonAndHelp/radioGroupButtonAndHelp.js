@@ -1,5 +1,5 @@
 import { LightningElement } from 'lwc';
-import CTUref from '@salesforce/resourceUrl/Ch7';
+import CTUref from '@salesforce/resourceUrl/CTUref';
 import formFactorPropertyName from '@salesforce/client/formFactor'
 import modalReference from 'c/modalReference';
 

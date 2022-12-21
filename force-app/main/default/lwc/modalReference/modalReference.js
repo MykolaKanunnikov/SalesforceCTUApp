@@ -1,9 +1,9 @@
 import LightningModal from 'lightning/modal';
-import CTUref from '@salesforce/resourceUrl/Ch7';
+import CTUref from '@salesforce/resourceUrl/CTUref';
 
 
 export default class ModalReference extends LightningModal {
 
-    refCTU = CTUref;
+    refCTU = CTUref + '/2.pdf';
 
 }

@@ -1,12 +1,10 @@
 import { LightningElement } from 'lwc';
-import CTUref from '@salesforce/resourceUrl/Ch7';
 import formFactorPropertyName from '@salesforce/client/formFactor'
 import modalReference from 'c/modalReference';
 
 export default class PackingArea1to7 extends LightningElement {
 
     value = '';
-    refCTU = CTUref;
     largeFormFactor = formFactorPropertyName === 'Large';
     smallFormFactor = formFactorPropertyName === 'Small';
 
