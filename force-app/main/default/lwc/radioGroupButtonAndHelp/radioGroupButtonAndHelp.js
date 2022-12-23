@@ -2,9 +2,11 @@ import { LightningElement } from 'lwc';
 import CTUref from '@salesforce/resourceUrl/CTUref';
 import formFactorPropertyName from '@salesforce/client/formFactor'
 import modalReference from 'c/modalReference';
+import {NavigationMixin} from 'lightning/navigation'
 
 
-export default class RadioGroupButtonAndHelp extends LightningElement {
+
+export default class RadioGroupButtonAndHelp extends NavigationMixin(LightningElement) {
     value = '';
     refCTU = CTUref;
     largeFormFactor = formFactorPropertyName === 'Large';
@@ -24,5 +26,15 @@ export default class RadioGroupButtonAndHelp extends LightningElement {
         size: 'large'
      })
     }
-
+    handleMobileClick(){
+        // itemId = event.target.dataset.id;
+         this[NavigationMixin.Navigate]({
+             "type": "standard__webPage",
+             "attributes": {
+                 "url": CTUref + '1' 
+             }
+         });
+      
+ 
+}
 }
