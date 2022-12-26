@@ -1,4 +1,5 @@
 public with sharing class QueueableFileUploadCTU implements Queueable, Database.AllowsCallouts{
+    // This job should be done only once after deployment.
     public void execute(QueueableContext context) {
     try {
         //get names of files from static the resource

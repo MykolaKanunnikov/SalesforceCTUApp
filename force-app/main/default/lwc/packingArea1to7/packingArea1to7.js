@@ -3,7 +3,7 @@ import formFactorPropertyName from '@salesforce/client/formFactor'
 import modalReference from 'c/modalReference';
 import CTUref from '@salesforce/resourceUrl/CTUref'
 import {NavigationMixin} from 'lightning/navigation'
-import getBaseUrl from '@salesforce/apex/ShipmentController.getBaseUrl';
+import getFileRecordId from '@salesforce/apex/ShipmentController.getFileRecordId';
 
 
 
@@ -46,17 +46,17 @@ export default class PackingArea1to7 extends NavigationMixin(LightningElement) {
       //          size: 'large'
      //       })
            // } else { 
-              //  const itemId = event.target.dataset.id;
-             //   const file = `/${itemId}.pdf`;
-                getBaseUrl()
-                    .then(baseUrl => {
+                const itemId = event.target.dataset.id;
+                const title = `${itemId}.pdf`;
+                console.log(title);
+                getFileRecordId(title)
+                    .then(properPdfId => {
                         try{
-            //            const staticResourceUrl = baseUrl + CTUref + file;
-                 //       console.log(staticResourceUrl);
+                        console.log(properPdfId);
                         this[NavigationMixin.Navigate]({
                             type: 'standard__recordPage',
                             attributes: {
-                                recordId: '0696800000LAJqHAAX',
+                                recordId: properPdfId,
                                 objectApiName: 'ContentDocument',
                                 actionName: 'view'
                             }
