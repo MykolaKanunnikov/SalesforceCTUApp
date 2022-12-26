@@ -5,4 +5,13 @@ public with sharing class ShipmentController {
         return URL.getSalesforceBaseUrl().toExternalForm();
     }
 
+    @AuraEnabled
+    public static String getFileRecordId(String itemId){
+        try {
+            
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
 }
