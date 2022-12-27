@@ -46,10 +46,9 @@ export default class PackingArea1to7 extends NavigationMixin(LightningElement) {
       //          size: 'large'
      //       })
            // } else { 
-                const itemId = event.target.dataset.id;
-                const title = `${itemId}.pdf`;
-                console.log(title);
-                getFileRecordId(title)
+                let itemId = event.target.dataset.id;
+                let itemTitle = `${itemId}.pdf`;
+                getFileRecordId({title: itemTitle})
                     .then(properPdfId => {
                         try{
                         console.log(properPdfId);
@@ -62,7 +61,8 @@ export default class PackingArea1to7 extends NavigationMixin(LightningElement) {
                             }
                         }); 
                         }catch(error){
-                            console.error(error);
+                            this.message = undefined;
+                            this.error = error;
                         } 
                     })       
             }

@@ -17,18 +17,6 @@ public with sharing class FilesUploadHandlerCTU {
 		return names;
 	}
 
-
-    /**
-     * @description Insert a record to be linked with reference files
-     * @return  string of id of inserted record
-     */ 
-    public static String insertBaseChecklistEntity(){
-        Packing_checklist__c baseChecklistEntity = new Packing_checklist__c();            
-        Database.SaveResult saveRes = Database.insert(baseChecklistEntity, false);
-        String baseChecklistEntityId = String.valueOf(saveRes.getId());
-        return baseChecklistEntityId;
-    }
-
     /**
      * @description Get a link to the static resource
      * @return   PageReference
@@ -52,6 +40,40 @@ public with sharing class FilesUploadHandlerCTU {
             urlsMap.put(fileName, new PageReference(srPath));
         }
         return urlsMap;
+    }
+
+    /**
+     * It creates a folder to agregate CTU reference files and shall be called first.
+     */
+    @future
+    public static void createWorkspace(){
+        ContentWorkspace CTUWorkspace = new ContentWorkspace(
+            Name='CTUcodeChecklistFiles', 
+            DeveloperName='CTUcodeChecklistFiles');
+        insert CTUWorkspace;
+    }
+
+    /**
+     * @description It connects CTU reference files with their folder.
+     * @param  contentId 
+     */ 
+    @future
+    public static void addFilesToTheWorkspace(List<String> contentId){
+        //bulk connect of files and the base record
+        //shareType 'I' - Inferred permission. The user’s permission is determined by the related record.   
+        ContentWorkspace ws = [SELECT Id FROM ContentWorkspace WHERE Name = 'CTUcodeChecklistFiles' LIMIT 1];
+
+        List<ContentDocumentLink> docLinks = new List<ContentDocumentLink>();
+        for (String c : contentId) {
+            docLinks.add(new ContentDocumentLink(
+            contentDocumentId = c,
+            linkedEntityId = ws.id,
+            shareType = 'I',
+            visibility = 'ALLUsers'        
+            ));        
+        }       
+        insert docLinks;       
+
     }
 
 }

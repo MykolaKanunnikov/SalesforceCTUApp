@@ -1,5 +1,6 @@
 public with sharing class QueueableFileUploadCTU implements Queueable, Database.AllowsCallouts{
     // This job should be done only once after deployment.
+    // ! change on batch
     public void execute(QueueableContext context) {
     try {
         //get names of files from static the resource
@@ -19,35 +20,28 @@ public with sharing class QueueableFileUploadCTU implements Queueable, Database.
                 VersionData = urlsMap.get(fileName).getContent()
             ));    
         }
-        Database.SaveResult[] srList = Database.insert(docVersions, false);
+        Database.SaveResult[] docVersionsSrList = Database.insert(docVersions, false);
 
         //get id list of newly inserted content
         List<Id> docVersionsId = new List<Id>();
-        for (Database.SaveResult sr : srList) {
+        for (Database.SaveResult sr : docVersionsSrList) {
             docVersionsId.add(sr.getId());
         }
 
-        //get contentDocumentIds
+        //get contentDocumentIds  
         List<ContentVersion> content = [SELECT contentDocumentId 
                                         FROM ContentVersion
                                         WHERE Id IN :docVersionsId];
 
-
-        //create, insert a record, that will be connected with files
-        String baseChecklistEntityId = FilesUploadHandlerCTU.insertBaseChecklistEntity();
-        
-        //bulk connect of files and the base record
-        //shareType 'I' - Inferred permission. The user’s permission is determined by the related record.   
-        List<ContentDocumentLink> docLinks = new List<ContentDocumentLink>();
+        List<String> contentId = new List<Id>();
         for (ContentVersion c : content) {
-            docLinks.add(new ContentDocumentLink(
-                contentDocumentId = c.contentDocumentId,
-                linkedEntityId = baseChecklistEntityId,
-                shareType = 'I',
-                visibility = 'ALLUsers'
-            ));
+            contentId.add(c.contentDocumentId);
         }
-        insert docLinks;
+           
+        // FilesUploadHandlerCTU.createWorkspace() should be called before the following, 
+        // but in another context. 
+        FilesUploadHandlerCTU.addFilesToTheWorkspace(contentId);
+
 
     } catch (Exception e) {
         System.debug(e);
