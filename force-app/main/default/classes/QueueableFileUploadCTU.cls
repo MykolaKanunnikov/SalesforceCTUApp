@@ -17,6 +17,7 @@ public with sharing class QueueableFileUploadCTU implements Queueable, Database.
                 ContentLocation = 'S',
                 PathOnClient = fileName,
                 Title = fileName,
+                Description = 'CTU Reference',
                 VersionData = urlsMap.get(fileName).getContent()
             ));    
         }

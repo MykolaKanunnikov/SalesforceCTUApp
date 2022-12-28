@@ -55,12 +55,11 @@ public with sharing class FilesUploadHandlerCTU {
 
     /**
      * @description It connects CTU reference files with their folder.
+      shareType 'I' - Inferred permission. The user’s permission is determined by the related record.   
      * @param  contentId 
      */ 
     @future
     public static void addFilesToTheWorkspace(List<String> contentId){
-        //bulk connect of files and the base record
-        //shareType 'I' - Inferred permission. The user’s permission is determined by the related record.   
         ContentWorkspace ws = [SELECT Id FROM ContentWorkspace WHERE Name = 'CTUcodeChecklistFiles' LIMIT 1];
 
         List<ContentDocumentLink> docLinks = new List<ContentDocumentLink>();

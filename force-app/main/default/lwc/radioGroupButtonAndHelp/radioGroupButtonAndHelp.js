@@ -1,17 +1,10 @@
 import { LightningElement } from 'lwc';
-import CTUref from '@salesforce/resourceUrl/CTUref';
-import formFactorPropertyName from '@salesforce/client/formFactor'
-import modalReference from 'c/modalReference';
 import {NavigationMixin} from 'lightning/navigation'
-
+import getFileRecordId from '@salesforce/apex/ShipmentController.getFileRecordId';
 
 
 export default class RadioGroupButtonAndHelp extends NavigationMixin(LightningElement) {
     value = '';
-    refCTU = CTUref;
-    largeFormFactor = formFactorPropertyName === 'Large';
-    smallFormFactor = formFactorPropertyName === 'Small';
-
 
     get options() {
         return [
@@ -21,20 +14,25 @@ export default class RadioGroupButtonAndHelp extends NavigationMixin(LightningEl
         ];
     }
 
-    handleClick(){
-     modalReference.open({
-        size: 'large'
-     })
+    handleClick(event){
+        let itemId = event.target.dataset.id;
+        let itemTitle = `${itemId}.pdf`;
+        getFileRecordId({title: itemTitle})
+            .then(properPdfId => {                
+                try{
+                this[NavigationMixin.Navigate]({ 
+                    type: "standard__namedPage",
+                    attributes: {
+                        pageName: 'filePreview' 
+                    },
+                    state:{
+                        selectedRecordId: properPdfId
+                    }
+                });
+                }catch(error){
+                    console.error(error);
+                }  
+            });
     }
-    handleMobileClick(){
-        // itemId = event.target.dataset.id;
-         this[NavigationMixin.Navigate]({
-             "type": "standard__webPage",
-             "attributes": {
-                 "url": CTUref + '1' 
-             }
-         });
-      
- 
-}
+
 }

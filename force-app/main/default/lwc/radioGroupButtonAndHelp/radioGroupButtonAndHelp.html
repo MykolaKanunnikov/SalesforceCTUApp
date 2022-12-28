@@ -11,19 +11,11 @@
                   </lightning-radio-group>
             </lightning-layout-item>
             
-            <!-- PC/laptop devices - pdf in modal -->
-            <!-- <template if:true={largeFormFactor}>-->
-                <lightning-layout-item flexibility="auto" padding="around-large">
-                    <lightning-button variant="base" label="Reference" title="CTU Code reference" icon-name="utility:help" icon-position="right" class="slds-m-left_x-small" onclick={handleClick}></lightning-button>
-                </lightning-layout-item>
-          <!--  </template>-->
-
-            <!-- Phone/tablet - download pdf link -->
-           <!--  <template if:false={largeFormFactor}>-->
-                <lightning-layout-item flexibility="auto" padding="around-large">
-                        <lightning-button variant="base" label="Download reference" title="CTU Code reference" icon-name="utility:help" icon-position="right" class="slds-m-left_x-small" onclick={handleMobileClick}></lightning-button>
-                </lightning-layout-item>    
-          <!--  </template>-->
+            <lightning-layout-item flexibility="auto" padding="around-large">
+                <lightning-button variant="base" label="" title="CTU Code reference"
+                    icon-name="utility:help" icon-position="right" class="slds-m-left_x-small"
+                    data-id="1" onclick={handleClick}></lightning-button>
+            </lightning-layout-item>
 
         </lightning-layout>
     </div>
