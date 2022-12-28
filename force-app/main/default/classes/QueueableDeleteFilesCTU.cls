@@ -4,9 +4,9 @@ public with sharing class QueueableDeleteFilesCTU implements Queueable {
      * @param  context 
      */ 
     public void execute(QueueableContext context) {
-    List<ContentDocument> cdList = [SELECT FileExtension
+    List<ContentDocument> cdList = [SELECT FileExtension, Description
                                     FROM ContentDocument
-                                    WHERE FileType = 'pdf'];
+                                    WHERE FileType = 'pdf' AND Description = 'CTU Reference'];
 
     delete cdList;
     }
