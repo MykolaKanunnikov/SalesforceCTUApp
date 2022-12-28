@@ -1,6 +1,6 @@
 public with sharing class QueueableDeleteFilesCTU implements Queueable {
     /**
-     * @description it's a way to automate files removal. It shall be more specific.
+     * @description it's a way to automate files removal.
      * @param  context 
      */ 
     public void execute(QueueableContext context) {
