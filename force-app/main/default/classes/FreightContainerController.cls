@@ -22,12 +22,12 @@ public with sharing class FreightContainerController {
      * @param  recordId id of current freight container
      * @return          id of current checklist
      */
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static String getCurrentChecklistId(String recordId){
         try {
-            return [SELECT Current_Checklist__c 
-                    FROM Freight_Container__c 
-                    WHERE Id = :recordId].Current_Checklist__c;
+            return [SELECT Id, Freight_Container__c 
+                    FROM Packing_checklist__c
+                    WHERE Freight_Container__c =: recordId].id;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
@@ -42,10 +42,9 @@ public with sharing class FreightContainerController {
     @AuraEnabled
     public static void updateRadioValue(String currentChecklistId, String valueId, String value){
         try {
-        //List<Packing_checklist__c> pc = [SELECT :valueId FROM ];
-        //pc.id = currentChecklistId;
-        //pc.valueId = value;
-        //update pc;
+            String jsonString = '{"id": "' + currentChecklistId + '", "' + valueId + '": "' + value + '" }';
+            Packing_checklist__c pc = (Packing_checklist__c)JSON.deserialize(jsonString, Packing_checklist__c.class);
+            update pc;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
