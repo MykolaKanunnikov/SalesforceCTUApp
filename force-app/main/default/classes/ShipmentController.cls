@@ -1,4 +1,4 @@
-public with sharing class FreightContainerController {
+public with sharing class ShipmentController {
 
     /**
      * @description It's a service method for click handler on every reference item
@@ -17,6 +17,7 @@ public with sharing class FreightContainerController {
         }
 
     }
+
     /**
      * @description It provides checklist id for further use
      * @param  recordId id of current freight container
@@ -24,15 +25,29 @@ public with sharing class FreightContainerController {
      */
     @AuraEnabled
     public static String getCurrentChecklistId(String recordId){
-        try {
-            return [SELECT Id, Freight_Container__c 
+        try {            
+            String percentsRecordId = '%' + recordId + '%';
+            return [SELECT Id, ShipmentId__c  
                     FROM Packing_checklist__c
-                    WHERE Freight_Container__c =: recordId].id;
+                    WHERE ShipmentId__c LIKE :percentsRecordId].id;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
     }
-    
+    /**
+     * @description 
+     * @param  currentChecklistId currentChecklistId description
+     * @return                    return 
+     */ 
+    @AuraEnabled
+    public static String getChecklistValues(String currentChecklistId){
+        try {
+            return '';
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
     /**
      * @description It updates values of checklists
      * @param  currentChecklistId id of the proper object

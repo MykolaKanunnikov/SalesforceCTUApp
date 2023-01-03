@@ -1,6 +1,6 @@
 import { LightningElement } from 'lwc';
 import {NavigationMixin} from 'lightning/navigation'
-import getFileRecordId from '@salesforce/apex/FreightContainerController.getFileRecordId';
+import getFileRecordId from '@salesforce/apex/ShipmentController.getFileRecordId';
 
 
 export default class RadioGroupButtonAndHelp extends NavigationMixin(LightningElement) {

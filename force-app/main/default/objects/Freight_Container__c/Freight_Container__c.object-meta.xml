@@ -162,7 +162,6 @@
     </nameField>
     <pluralLabel>Freight Containers</pluralLabel>
     <searchLayouts>
-        <searchResultsAdditionalFields>Current_Shipment__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Size__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Container_owner_Line__c</searchResultsAdditionalFields>
     </searchLayouts>
