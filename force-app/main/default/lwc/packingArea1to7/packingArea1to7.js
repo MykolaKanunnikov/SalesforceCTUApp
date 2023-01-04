@@ -12,59 +12,37 @@ export default class PackingArea1to7 extends NavigationMixin(LightningElement) {
     
     currentChecklistId;
 
-    value = '';
-
-    /*value1 = '';
+    value1 = '';
     value2 = '';
     value3 = '';
     value4 = '';
     value5 = '';
     value6 = '';
-    value7 = '';*/
+    value7 = '';
 
     // 1. define apropriate checklist when a component is inserted to the DOM
     // 2. retrieve already inserted values
     connectedCallback() {
         // 1
+        const fields = 'packingArea1__c, packingArea2__c, packingArea3__c, packingArea4__c, packingArea5__c, packingArea6__c, packingArea7__c';
         if(!this.currentChecklistId){
             getCurrentChecklistId({recordId: this.recordId})
                 .then(result =>{
                     this.currentChecklistId = result;
+                    
+                    // 2
+                    getChecklistValues({currentChecklistId: result, fields: fields})
+                    .then(values =>{
+                        this.value1 = values.packingArea1__c;
+                        this.value2 = values.packingArea2__c;
+                        this.value3 = values.packingArea3__c;
+                        this.value4 = values.packingArea4__c;
+                        this.value5 = values.packingArea5__c;
+                        this.value6 = values.packingArea6__c;
+                        this.value7 = values.packingArea7__c;
+                    })   
                 });
         }
-
-        //2
-        
-    }
-
-    renderedCallback() {
-        console.log(this.template.querySelectorAll('[data-id]'));
-
-    }
-
-    /*get radioButtonElements() {
-        return this.template.querySelectorAll('[data-id]');
-    }*/
-
-    get value(){
-        return this.value;
-       /* let itemId = event.target.dataset.id;
-        console.log('value itemId ' + itemId);
-        getChecklistValues({currentChecklistId: this.currentChecklistId})
-            .then(result =>{
-                try{
-                console.log('value result ' + result);
-                if(result) {
-                    console.log('result is not null');
-                    return result;
-                } else {
-                    return 'NO';
-                }
-            }catch(error){
-                console.error(error);
-            }
-
-            });*/
     }
 
     // define radio group settings 
@@ -102,7 +80,6 @@ export default class PackingArea1to7 extends NavigationMixin(LightningElement) {
     handleChange(event){
         let value = event.target.value;
         let valueId = event.target.dataset.id;
-        console.log(this.currentChecklistId);
         if(this.currentChecklistId){
             updateRadioValue({currentChecklistId: this.currentChecklistId, valueId: valueId, value: value});
         }

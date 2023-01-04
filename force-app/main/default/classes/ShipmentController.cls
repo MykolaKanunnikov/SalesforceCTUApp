@@ -27,22 +27,31 @@ public with sharing class ShipmentController {
     public static String getCurrentChecklistId(String recordId){
         try {            
             String percentsRecordId = '%' + recordId + '%';
-            return [SELECT Id, ShipmentId__c  
+            // get id of related container for more precision
+            String relatedContainerId = [SELECT Freight_Container__c
+                                         FROM Shipment__c
+                                         WHERE Id =:recordId].Freight_Container__c;
+            return [SELECT Id  
                     FROM Packing_checklist__c
-                    WHERE ShipmentId__c LIKE :percentsRecordId].id;
+                    WHERE Freight_Container__c =:relatedContainerId
+                    AND ShipmentId__c LIKE :percentsRecordId].id;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
     }
     /**
-     * @description 
-     * @param  currentChecklistId currentChecklistId description
-     * @return                    return 
+     * @description It gives actual checklist values to display
+     * @param  currentChecklistId id of the proper object 
+     * @param fields              depends on calling component
+     * @return                    actual checklist values to display 
      */ 
     @AuraEnabled
-    public static String getChecklistValues(String currentChecklistId){
+    public static Packing_checklist__c getChecklistValues(String currentChecklistId, String fields){
         try {
-            return '';
+            // get values from database
+            String query = 'SELECT ' + fields + ' FROM Packing_checklist__c WHERE Id =\'' + currentChecklistId + '\'';
+            Packing_checklist__c values =  Database.query(query);
+            return values;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
