@@ -11,7 +11,7 @@ const options = () => {
     ];
 };
 
-// display a relevant reference file.    
+// display a relevant reference file    
 function openReference(event) {
     let itemId = event.target.dataset.id;
     let itemTitle = `${itemId}.pdf`;

@@ -3,8 +3,11 @@ import { NavigationMixin } from 'lightning/navigation'
 import getCurrentChecklistId from '@salesforce/apex/ShipmentController.getCurrentChecklistId';
 import getChecklistValues from '@salesforce/apex/ShipmentController.getChecklistValues';
 import { openReference, radioChange, options } from 'c/radioGroupButtonAndHelp';
+import {packingAreaQuestions} from 'c/questions';
 
 export default class PackingArea1to7 extends NavigationMixin(LightningElement) {
+
+    packingAreaQuestions = packingAreaQuestions; 
 
     @api recordId;
 
@@ -58,5 +61,7 @@ export default class PackingArea1to7 extends NavigationMixin(LightningElement) {
     handleChange(event) {
         radioChange.call(this, event);
     }
+
+
 
 }
