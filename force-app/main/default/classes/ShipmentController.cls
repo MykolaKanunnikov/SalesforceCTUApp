@@ -6,16 +6,18 @@ public with sharing class ShipmentController {
      * @return        id of the proper .pdf file
      */ 
     @AuraEnabled(cacheable=true)
-    public static String getFileRecordId(String title){      
+    public static Response getFileRecordId(String title){      
+        Response resp;
         try {
-            return [SELECT ContentDocumentId 
-                    FROM ContentVersion
-                    WHERE Title = :title AND Description = 'CTU Reference' 
-                    LIMIT 1].ContentDocumentId;      
+            String properPdfId = [SELECT ContentDocumentId 
+                                  FROM ContentVersion
+                                  WHERE Title = :title AND Description = 'CTU Reference' 
+                                  LIMIT 1].ContentDocumentId;    
+            resp = new Response(properPdfId);
         } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
+            resp = new Response(e);
         }
-
+        return resp;
     }
 
     /**

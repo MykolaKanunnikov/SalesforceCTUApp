@@ -1,7 +1,9 @@
-import { NavigationMixin } from 'lightning/navigation'
+import { NavigationMixin } from 'lightning/navigation';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getFileRecordId from '@salesforce/apex/ShipmentController.getFileRecordId';
 import updateRadioValue from '@salesforce/apex/ShipmentController.updateRadioValue';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import getCurrentChecklistId from '@salesforce/apex/ShipmentController.getCurrentChecklistId';
+import getChecklistValues from '@salesforce/apex/ShipmentController.getChecklistValues';
 
 // define radio group 
 const options = () => {
@@ -12,26 +14,56 @@ const options = () => {
     ];
 };
 
+// 1. define apropriate checklist
+// 2. retrieve already inserted values
+function checklistSetup(fields) {
+    if (!this.currentChecklistId) {
+        getCurrentChecklistId({ recordId: this.recordId })
+            .then(result => {
+                this.currentChecklistId = result;
+                // 2
+                getChecklistValues({ currentChecklistId: result, fields: fields })
+                    .then(values => {
+                        this.values = values;
+                    })
+            });
+    }
+
+}
+
 // display a relevant reference file    
 function openReference(event) {
     let itemId = event.target.dataset.id;
     let itemTitle = `${itemId}.pdf`;
     getFileRecordId({ title: itemTitle })
-        .then(properPdfId => {
-            try {
+        .then(resp => {
+            if (resp.isSuccess) {
                 this[NavigationMixin.Navigate]({
                     type: "standard__namedPage",
                     attributes: {
                         pageName: 'filePreview'
                     },
                     state: {
-                        selectedRecordId: properPdfId
+                        selectedRecordId: resp.responseObj
                     }
                 });
-            } catch (error) {
-                console.error(error);
+            } else {
+                const errorEvent = new ShowToastEvent({
+                    title: 'File error',
+                    variant: 'error',
+                    message: resp.responseObj
+                });
+                this.dispatchEvent(errorEvent);
             }
-        });
+        })
+        .catch(error => {
+            const errorEvent = new ShowToastEvent({
+                title: 'File error',
+                variant: 'error',
+                message: "Error: " + error.body.message
+            });
+            this.dispatchEvent(errorEvent);
+        })
 }
 
 // save values from a radio button to the database
@@ -41,13 +73,10 @@ function radioChange(event) {
     if (this.currentChecklistId) {
         updateRadioValue({ currentChecklistId: this.currentChecklistId, valueId: valueId, value: value })
             .then(resp => {
-                if (resp.isSuccess) {
-                    console.log('success');
-                } else {
+                if (!resp.isSuccess) {
                     const errorEvent = new ShowToastEvent({
                         title: 'Save error',
                         variant: 'error',
-                        mode: 'sticky',
                         message: resp.responseObj
                     });
                     this.dispatchEvent(errorEvent);
@@ -57,7 +86,6 @@ function radioChange(event) {
                 const noResponseEvent = new ShowToastEvent({
                     title: 'Save error',
                     variant: 'error',
-                    mode: 'sticky',
                     message: 'No response / saving: ' + error.body.message
                 });
                 this.dispatchEvent(noResponseEvent);
@@ -65,4 +93,4 @@ function radioChange(event) {
     }
 }
 
-export { openReference, radioChange, options };
+export { openReference, radioChange, options, checklistSetup };
