@@ -64,13 +64,16 @@ public with sharing class ShipmentController {
      * @param  value              'YES', 'NO' or 'N/A' string
      */
     @AuraEnabled
-    public static void updateRadioValue(String currentChecklistId, String valueId, String value){
+    public static Response updateRadioValue(String currentChecklistId, String valueId, String value){
+        Response resp;
         try {
             String jsonString = '{"id": "' + currentChecklistId + '", "' + valueId + '": "' + value + '" }';
             Packing_checklist__c pc = (Packing_checklist__c)JSON.deserialize(jsonString, Packing_checklist__c.class);
+            resp = new Response(pc);
             update pc;
         } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
+            resp = new Response(e);
         }
+        return resp;
     }
 }
