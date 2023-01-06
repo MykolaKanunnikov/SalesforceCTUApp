@@ -13,6 +13,9 @@ export default class PackingArea1to7 extends NavigationMixin(LightningElement) {
 
     values = '';
 
+    // in the following code '.call' is needed to explicitly tell the  
+    // imported utility function to use 'this' from the given component
+
     // set values and currentChecklistId fields
     connectedCallback() {
         const fields = 'packingArea1__c, packingArea2__c, packingArea3__c, packingArea4__c, packingArea5__c, packingArea6__c, packingArea7__c';
@@ -21,9 +24,6 @@ export default class PackingArea1to7 extends NavigationMixin(LightningElement) {
 
     // define radio group settings 
     options = options();
-
-    // in the following code '.call' is needed to explicitly tell the  
-    // imported utility function to use 'this' from the given component
 
     // display a relevant reference file.
     handleClick(event) {
