@@ -1,7 +1,7 @@
 // It's designed to let developer change checklist labels from one place,
 // e.g. when the checklist shall be updated.
 
-export const packingAreaQuestions = {
+export const packingArea = {
     "q1": "1. Is the type of container appropriate for the cargo to be carried?",
     "q2": "2. Is the container positioned so that it can be accessed safely?",
     "q3": "3. Have steps been taken to avoid contamination of the packing area by pests?",

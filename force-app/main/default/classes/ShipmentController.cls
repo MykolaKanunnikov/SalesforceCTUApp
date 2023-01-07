@@ -77,7 +77,7 @@ public with sharing class ShipmentController {
         try {
             String jsonString = '{"id": "' + currentChecklistId + '", "' + valueId + '": "' + value + '" }';
             Packing_checklist__c pc = (Packing_checklist__c)JSON.deserialize(jsonString, Packing_checklist__c.class);
-            resp = new Response(pc);
+            resp = new Response();
             update pc;
         } catch (Exception e) {
             resp = new Response(e);

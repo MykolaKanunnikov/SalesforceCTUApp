@@ -1,15 +1,14 @@
 import { LightningElement, api } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation'
 import { openReference, radioChange, options, checklistSetup } from 'c/radioGroupButtonAndHelp';
-import { packingArea } from 'c/questions';
+import { containerCondition } from 'c/questions';
 
-export default class PackingArea1to7 extends NavigationMixin(LightningElement) {
-
+export default class ContainerCondition8to12 extends NavigationMixin(LightningElement)  {
     @api recordId;
 
     currentChecklistId;
 
-    packingArea = packingArea;
+    containerCondition = containerCondition;
 
     values = '';
 
@@ -18,7 +17,7 @@ export default class PackingArea1to7 extends NavigationMixin(LightningElement) {
 
     // set values and currentChecklistId fields
     connectedCallback() {
-        const fields = 'packingArea1__c, packingArea2__c, packingArea3__c, packingArea4__c, packingArea5__c, packingArea6__c, packingArea7__c';
+        const fields = 'containerCondition8__c, containerCondition9__c, containerCondition10__c, containerCondition11__c, containerCondition12__c';
         checklistSetup.call(this, fields);
     }
 
@@ -34,5 +33,4 @@ export default class PackingArea1to7 extends NavigationMixin(LightningElement) {
     handleChange(event) {
         radioChange.call(this, event);
     }
-
 }
