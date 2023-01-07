@@ -17,19 +17,53 @@ const options = () => {
 // 1. define apropriate checklist
 // 2. retrieve already inserted values
 function checklistSetup(fields) {
-    if (!this.currentChecklistId) {
-        getCurrentChecklistId({ recordId: this.recordId })
-            .then(result => {
-                this.currentChecklistId = result;
-                // 2
-                getChecklistValues({ currentChecklistId: result, fields: fields })
-                    .then(values => {
-                        this.values = values;
-                    })
-            });
-    }
+    getCurrentChecklistId({ recordId: this.recordId })
+        .then(resp => {
+            if (resp.isSuccess) {
+                this.currentChecklistId = resp.responseObj;
+            } else {
+                const idError = new ShowToastEvent({
+                    title: 'Checklist Id error',
+                    variant: 'error',
+                    message: resp.responseObj
+                });
+                this.dispatchEvent(idError);
+            }
+            // 2
+            getChecklistValues({ currentChecklistId: resp.responseObj, fields: fields })
+                .then(response => {
+                    if (response.isSuccess) {
+                        this.values = response.responseObj;
+                    } else {
+                        const valuesError = new ShowToastEvent({
+                            title: 'Checklist values error',
+                            variant: 'error',
+                            message: response.responseObj
+                        });
+                        this.dispatchEvent(valuesError);
+                    }
+                })
+                .catch(errorOnValues => {
+                    const onValues = new ShowToastEvent({
+                        title: 'Checklist setup error',
+                        variant: 'error',
+                        message: "Error: " + errorOnValues.body.message
+                    });
+                    this.dispatchEvent(onValues);
+                })
 
+        })
+        .catch(errorOnId => {
+            const onId = new ShowToastEvent({
+                title: 'Checklist setup error',
+                variant: 'error',
+                message: "Error: " + errorOnId.body.message
+            });
+            this.dispatchEvent(onId);
+        })
 }
+
+
 
 // display a relevant reference file    
 function openReference(event) {

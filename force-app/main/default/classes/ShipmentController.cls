@@ -26,20 +26,24 @@ public with sharing class ShipmentController {
      * @return          id of current checklist
      */
     @AuraEnabled
-    public static String getCurrentChecklistId(String recordId){
+    public static Response getCurrentChecklistId(String recordId){
+        Response resp;
         try {            
             String percentsRecordId = '%' + recordId + '%';
             // get id of related container for more precision
             String relatedContainerId = [SELECT Freight_Container__c
                                          FROM Shipment__c
                                          WHERE Id =:recordId].Freight_Container__c;
-            return [SELECT Id  
-                    FROM Packing_checklist__c
-                    WHERE Freight_Container__c =:relatedContainerId
-                    AND ShipmentId__c LIKE :percentsRecordId].id;
+
+            String currentChecklistId = [SELECT Id  
+                                         FROM Packing_checklist__c
+                                         WHERE Freight_Container__c =:relatedContainerId
+                                         AND ShipmentId__c LIKE :percentsRecordId].id;
+            resp = new Response(currentChecklistId);
         } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
+            resp = new Response(e);
         }
+        return resp;
     }
     /**
      * @description It gives actual checklist values to display
@@ -48,15 +52,17 @@ public with sharing class ShipmentController {
      * @return                    actual checklist values to display 
      */ 
     @AuraEnabled
-    public static Packing_checklist__c getChecklistValues(String currentChecklistId, String fields){
+    public static Response getChecklistValues(String currentChecklistId, String fields){
+        Response resp;
         try {
             // get values from database
             String query = 'SELECT ' + fields + ' FROM Packing_checklist__c WHERE Id =\'' + currentChecklistId + '\'';
             Packing_checklist__c values =  Database.query(query);
-            return values;
+            resp = new Response(values);
         } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
+            resp = new Response(e);
         }
+        return resp;
     }
 
     /**
