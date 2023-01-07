@@ -19,7 +19,7 @@ export const containerCondition = {
     "q12": "12. Is the container interior free from soil or other visible infestation by pests?"
 }
 
-export const packingTheContainer = {
+export const packingContainer = {
     "q13": "13. Is the cargo to be packed free from soil or other visible infestation by pests?",
     "q14": "14. Has the heavier cargo been packed at the bottom of the container with any lighter weight cargo on top?",
     "q15": "15. Is the cargo distributed evenly across the floor of the container to spread the load?",
@@ -43,12 +43,12 @@ export const afterPacking = {
     "q27": "27. Are both the interior and the exterior of the container, and its cargo, free of soil, or other visible infestation by pests?"
 }
 
-export const closingTheContainer = {
+export const closingContainer = {
     "q28": "28. Have the doors of the container been securely closed and latched?",
     "q29": "29. Has a seal been affixed to the container and its number recorded?"
 }
 
-export const dispatchingTheContainer = {
+export const dispatchingContainer = {
     "q30": "30. For the packed container, has the Verified Gross Mass been communicated to the carrier as early as required by the carrier?",
     "q31": "31. For the packed container, has the identity of the container and the seal number been communicated to the carrier as early as required by the carrier?",
     "q32": "32. For the cargo, has an accurate description (including classification) of the cargo itself and the packaging been communicated to the carrier, as early as required by the carrier?",
