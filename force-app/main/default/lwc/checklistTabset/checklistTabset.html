@@ -1,24 +1,24 @@
 <template>
-    <lightning-tabset variant="vertical">
-        <lightning-tab label="I. The packing area">
+    <lightning-tabset variant={tabsetVariant}>
+        <lightning-tab label="1. The packing area">
             <c-packing-area1to7 record-id={recordId}></c-packing-area1to7>
         </lightning-tab>
-        <lightning-tab label="II. Container condition">
+        <lightning-tab label="2. Container condition">
             <c-container-condition8to12 record-id={recordId}></c-container-condition8to12>
         </lightning-tab>
-        <lightning-tab label="III. Packing the container">
+        <lightning-tab label="3. Packing the container">
             <c-packing-container13to19 record-id={recordId}></c-packing-container13to19>
         </lightning-tab>
-        <lightning-tab label="IV. Dangerous goods">
+        <lightning-tab label="4. Dangerous goods">
             <c-dangerous-goods20to23 record-id={recordId}></c-dangerous-goods20to23>
         </lightning-tab>
-        <lightning-tab label="V. After packing the container but before closing the doors">
+        <lightning-tab label="5. Before closing the doors">
             <c-after-packing24to27 record-id={recordId}></c-after-packing24to27>
         </lightning-tab>
-        <lightning-tab label="VI. Closing the container">
+        <lightning-tab label="6. Closing the container">
             <c-closing-container28to29 record-id={recordId}></c-closing-container28to29>
         </lightning-tab>
-        <lightning-tab label="VII. Dispatching the container">
+        <lightning-tab label="7. Dispatching the container">
             <c-dispatching-container30to34 record-id={recordId}></c-dispatching-container30to34>
         </lightning-tab>
     </lightning-tabset>
