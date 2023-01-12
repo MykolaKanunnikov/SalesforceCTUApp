@@ -8,11 +8,6 @@ public with sharing class Response {
         this.isSuccess = true;
     }
 
-    public Response(Boolean status, String message){
-        this.isSuccess = status;
-        this.responseObj = message;
-    }
-
     public Response(Object pResponseObj){
         this.isSuccess = true;
         this.responseObj = pResponseObj;
