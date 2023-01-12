@@ -18,7 +18,7 @@ export default class PackingArea1to7 extends NavigationMixin(LightningElement) {
 
     // set values and currentChecklistId fields
     connectedCallback() {
-        const fields = 'packingArea1__c, packingArea2__c, packingArea3__c, packingArea4__c, packingArea5__c, packingArea6__c, packingArea7__c';
+        const fields = 'ctuapptest__packingArea1__c, ctuapptest__packingArea2__c, ctuapptest__packingArea3__c, ctuapptest__packingArea4__c, ctuapptest__packingArea5__c, ctuapptest__packingArea6__c, ctuapptest__packingArea7__c';
         checklistSetup.call(this, fields);
     }
 

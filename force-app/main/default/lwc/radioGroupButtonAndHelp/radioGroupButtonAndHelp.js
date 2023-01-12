@@ -5,6 +5,8 @@ import updateRadioValue from '@salesforce/apex/ShipmentController.updateRadioVal
 import getCurrentChecklistId from '@salesforce/apex/ShipmentController.getCurrentChecklistId';
 import getChecklistValues from '@salesforce/apex/ShipmentController.getChecklistValues';
 
+const namespacePrefix = 'ctuapptest__';
+
 // define radio group 
 const options = () => {
     return [
@@ -103,7 +105,7 @@ function openReference(event) {
 // save values from a radio button to the database
 function radioChange(event) {
     let value = event.target.value;
-    let valueId = event.target.dataset.id;
+    let valueId = namespacePrefix + event.target.dataset.id;
     if (this.currentChecklistId) {
         updateRadioValue({ currentChecklistId: this.currentChecklistId, valueId: valueId, value: value })
             .then(resp => {

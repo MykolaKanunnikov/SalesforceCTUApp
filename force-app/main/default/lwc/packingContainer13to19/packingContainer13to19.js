@@ -17,7 +17,7 @@ export default class PackingContainer13to19 extends NavigationMixin(LightningEle
 
     // set values and currentChecklistId fields
     connectedCallback() {
-        const fields = 'packingContainer13__c, packingContainer14__c, packingContainer15__c, packingContainer16__c, packingContainer17__c, packingContainer18__c, packingContainer19__c';
+        const fields = 'ctuapptest__packingContainer13__c, ctuapptest__packingContainer14__c, ctuapptest__packingContainer15__c, ctuapptest__packingContainer16__c, ctuapptest__packingContainer17__c, ctuapptest__packingContainer18__c, ctuapptest__packingContainer19__c';
         checklistSetup.call(this, fields);
     }
 

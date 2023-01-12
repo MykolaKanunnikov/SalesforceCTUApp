@@ -17,7 +17,7 @@ export default class ClosingContainer28to29 extends NavigationMixin(LightningEle
 
     // set values and currentChecklistId fields
     connectedCallback() {
-        const fields = 'closingContainer28__c, closingContainer29__c';
+        const fields = 'ctuapptest__closingContainer28__c, ctuapptest__closingContainer29__c';
         checklistSetup.call(this, fields);
     }
 

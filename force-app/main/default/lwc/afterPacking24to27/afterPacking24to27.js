@@ -17,7 +17,7 @@ export default class AfterPacking24to27 extends NavigationMixin(LightningElement
 
     // set values and currentChecklistId fields
     connectedCallback() {
-        const fields = 'afterPacking24__c, afterPacking25__c, afterPacking26__c, afterPacking27__c';
+        const fields = 'ctuapptest__afterPacking24__c, ctuapptest__afterPacking25__c, ctuapptest__afterPacking26__c, ctuapptest__afterPacking27__c';
         checklistSetup.call(this, fields);
     }
 
