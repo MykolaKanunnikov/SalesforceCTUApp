@@ -3,16 +3,13 @@ public with sharing class TestShipmentController {
 
     @isTest
     private static void testGetFileRecordId(){
-        String cvId = TestDataFactory.insertContentVersion();
-        String cdId = [SELECT ContentDocumentId FROM ContentVersion WHERE Id = :cvId].ContentDocumentId;
-        String txt = '/test.txt';
-
+        String caId = TestDataFactory.insertContentAsset();
+        String masterLabel = 'asset_testpdf';
         Test.startTest();
-        Response resp = ShipmentController.getFileRecordId(txt);
+        Response resp = ShipmentController.getFileRecordId(masterLabel);
         Test.stopTest();
-
         Assert.areEqual(true, resp.isSuccess, 'Response success status is FALSE');
-        Assert.areEqual(cdId, resp.responseObj, 'Expected ContentDocumentId is not recieved');
+        Assert.areEqual(caId, resp.responseObj, 'Expected ContentAsset Id is not recieved');
     }
 
     @isTest

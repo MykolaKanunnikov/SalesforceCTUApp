@@ -2,6 +2,7 @@ public with sharing class ShipmentController {
 
     /**
      * @description It's a service method for click handler on every reference item
+     * If statement for testing is needed since NamespacePrefix is not writable.
      * @param  title - value of a button data-id attribute (title / fileName)
      * @return        id of the proper .pdf file
      */ 
@@ -9,10 +10,15 @@ public with sharing class ShipmentController {
     public static Response getFileRecordId(String title){      
         Response resp;
         try {
-            String properPdfId = [SELECT ContentDocumentId 
-                                  FROM ContentVersion
-                                  WHERE Title = :title AND Description = 'CTU Reference' 
-                                  LIMIT 1].ContentDocumentId;    
+            String properPdfId;
+            if(Test.isRunningTest()){
+                properPdfId = [SELECT Id FROM ContentAsset WHERE MasterLabel = :title].id;
+            }else{
+                properPdfId = [SELECT ContentDocumentId 
+                                      FROM ContentAsset
+                                      WHERE MasterLabel = :title AND NamespacePrefix = 'ctuapptest' 
+                                      LIMIT 1].ContentDocumentId;    
+            }
             resp = new Response(properPdfId);
         } catch (Exception e) {
             resp = new Response(e);

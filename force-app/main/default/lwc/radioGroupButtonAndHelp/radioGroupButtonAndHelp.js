@@ -70,7 +70,7 @@ function checklistSetup(fields) {
 // display a relevant reference file    
 function openReference(event) {
     let itemId = event.target.dataset.id;
-    let itemTitle = `${itemId}.pdf`;
+    let itemTitle = `asset_${itemId}pdf`;
     getFileRecordId({ title: itemTitle })
         .then(resp => {
             if (resp.isSuccess) {

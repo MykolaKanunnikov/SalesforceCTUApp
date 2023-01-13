@@ -1,17 +1,15 @@
 @isTest
 public with sharing class TestDataFactory {
 
-    public static String insertContentVersion(){
-        String txt = '/test.txt';
-        ContentVersion cv = new ContentVersion(
-                ContentLocation = 'S',
-                PathOnClient = txt,
-                Title = txt,
-                Description = 'CTU Reference',
-                VersionData = Blob.valueOf(txt));
-        Database.SaveResult sr = Database.insert(cv, false);
-        String cvId = sr.getId();
-        return cvId;
+    public static String insertContentAsset(){
+        ContentAsset ca = new ContentAsset(
+            language = 'en_US',
+            masterLabel = 'asset_testpdf',
+            developerName = 'asset_testpdf'
+        );
+        Database.SaveResult srCa = Database.insert(ca, false);
+        String caId = srCa.getId();
+        return caId;
     }
 
     public static Map<String, String> checklistSetup(){
