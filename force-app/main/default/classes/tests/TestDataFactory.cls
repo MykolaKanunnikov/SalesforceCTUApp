@@ -18,7 +18,7 @@ public with sharing class TestDataFactory {
         Database.SaveResult srFc = Database.insert(fc, false);
         String fcId = srFc.getId();
 
-        Shipment__c s = new Shipment__c(Name = 'test', FCL_LCL__c = 'FCL', Freight_Container__c = fcId);
+        Shipment__c s = new Shipment__c(Name = 'test', Freight_Container__c = fcId);
         Database.SaveResult srS = Database.insert(s, false);
         String sId = srS.getId();
 
