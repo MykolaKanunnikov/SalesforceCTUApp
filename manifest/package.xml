@@ -38,7 +38,11 @@
     </types>
     <types>
     <members>*</members>
-    <name>ContentAsset</name>
+        <name>ContentAsset</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>StandardValueSet</name>
     </types>
     <version>55.0</version>
 </Package>

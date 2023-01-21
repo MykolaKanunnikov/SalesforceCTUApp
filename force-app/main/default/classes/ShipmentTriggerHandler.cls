@@ -33,9 +33,24 @@ public with sharing class ShipmentTriggerHandler {
                 );
                 pcList.add(pc);
         }
+        Database.SaveResult[] checklistSaveResult;
+        List<Shipment__c> checklistLinkedShipments = new List<Shipment__c>();
         if(!pcList.isEmpty()){
-            insert pcList;
+            checklistSaveResult = Database.insert(pcList, false);
+        System.debug('checklistSaveResult - ' + checklistSaveResult);
+        for (Integer i = 0; i < newShipments.size(); i++) {
+            ctuapptest__Shipment__c linkedShipment = new ctuapptest__Shipment__c(
+                Id = newShipments[i].id,
+                Checklist__c = checklistSaveResult[i].getId());
+                checklistLinkedShipments.add(linkedShipment);
         }
+        update checklistLinkedShipments;
+        for (Database.SaveResult sr : checklistSaveResult) {
+            System.debug('result - ' + sr.getId());
+
+        }
+        }
+
     }
 
     /**

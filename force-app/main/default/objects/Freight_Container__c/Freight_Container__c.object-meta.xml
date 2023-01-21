@@ -156,7 +156,7 @@
     <externalSharingModel>ReadWrite</externalSharingModel>
     <label>Freight Container</label>
     <nameField>
-        <label>Freight Container Name</label>
+        <label>Freight Container Number</label>
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
