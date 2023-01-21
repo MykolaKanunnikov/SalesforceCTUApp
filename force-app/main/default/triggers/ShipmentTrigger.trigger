@@ -3,6 +3,7 @@ trigger ShipmentTrigger on Shipment__c (before insert, before update,
 
     switch on Trigger.operationType {
         when BEFORE_INSERT{
+            ShipmentTriggerHandler.avoidDuplicates(Trigger.new);
         } 
         when BEFORE_UPDATE{
 
