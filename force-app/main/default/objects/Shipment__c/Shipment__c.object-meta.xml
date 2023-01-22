@@ -166,7 +166,7 @@
         <searchResultsAdditionalFields>Freight_Container__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Consignee__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Estimated_Time_of_Departure__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>Checklist_done__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Checklist_status__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
