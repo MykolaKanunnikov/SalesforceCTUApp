@@ -141,7 +141,7 @@
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
-    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <compactLayoutAssignment>MobileChecklist</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Equipment owners point of view.</description>
     <enableActivities>false</enableActivities>

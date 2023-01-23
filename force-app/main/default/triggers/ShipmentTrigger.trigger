@@ -9,7 +9,7 @@ trigger ShipmentTrigger on Shipment__c (before insert, before update,
             ShipmentTriggerHandler.avoidDuplicatesBeforeUpdate(Trigger.new, Trigger.old);
         }
         when AFTER_INSERT{
-            ShipmentTriggerHandler.createChecklistAfterInsert(Trigger.new);
+            ShipmentTriggerHandler.createChecklist(Trigger.new);
         }  
         when AFTER_DELETE{
             ShipmentTriggerHandler.handleDelete(Trigger.old);

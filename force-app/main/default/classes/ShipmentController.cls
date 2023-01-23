@@ -35,16 +35,9 @@ public with sharing class ShipmentController {
     public static Response getCurrentChecklistId(String recordId){
         Response resp;
         try {            
-            String percentsRecordId = '%' + recordId + '%';
-            // get id of related container for more precision
-            String relatedContainerId = [SELECT Freight_Container__c
-                                         FROM Shipment__c
-                                         WHERE Id =:recordId].Freight_Container__c;
-
-            String currentChecklistId = [SELECT Id  
+             String currentChecklistId = [SELECT Id  
                                          FROM Packing_checklist__c
-                                         WHERE Freight_Container__c =:relatedContainerId
-                                         AND ShipmentId__c LIKE :percentsRecordId].id;
+                                         WHERE Shipment__c =: recordId].id;
             resp = new Response(currentChecklistId);
         } catch (Exception e) {
             resp = new Response(e);

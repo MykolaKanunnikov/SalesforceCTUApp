@@ -29,66 +29,28 @@ public with sharing class ShipmentTriggerHandler {
                 if (!linkedShipments.isEmpty()){
                     throw new IllegalArgumentException(
                         'No duplicates for already existing shipment-container pairs allowed');
-                } else {
-                    createChecklistBeforeUpdate(newShipments[i]);
-                }
+                } 
             }
         }
     }
+    
     
     /**
      * @description createChecklist creates a Packing_checklist__c, which
      * we need as storage for values and relationships.
      * @param  newShipments list of new Shipmnent__c 
      */
-    public static void createChecklistAfterInsert(List<Shipment__c> newShipments){
+    public static void createChecklist(List<Shipment__c> newShipments){
         List<Packing_checklist__c> pcList = new List<Packing_checklist__c>();
         for (Shipment__c shipment : newShipments) {
                 Packing_checklist__c pc = new Packing_checklist__c(
                     Freight_Container__c = shipment.Freight_Container__c,
-                    ShipmentId__c = shipment.id
+                    Shipment__c = shipment.id
                 );
                 pcList.add(pc);
         }
         Database.SaveResult[] checklistSaveResult = Database.insert(pcList, false);
         updateChecklistLink(checklistSaveResult, newShipments);
-    }
-
-    private static void createChecklistBeforeUpdate(Shipment__c shipmentBeforeUpdate){
-        Packing_checklist__c pc = new Packing_checklist__c(
-            Freight_Container__c = shipmentBeforeUpdate.Freight_Container__c,
-            ShipmentId__c = shipmentBeforeUpdate.id
-        );      
-        Database.SaveResult checklistSaveResult = Database.insert(pc, false);
-        System.debug('checklistSaveResult - ' + checklistSaveResult);
-        updateChecklistLink(checklistSaveResult, shipmentBeforeUpdate);
-
-    }
-
-    private static void updateChecklistLink (Database.SaveResult[] checklistSaveResult, List<Shipment__c> newShipments){
-        List<Shipment__c> linkedShipments = new List<Shipment__c>();
-            for (Integer i = 0; i < newShipments.size(); i++) {
-                ctuapptest__Shipment__c linkedShipment = new ctuapptest__Shipment__c(
-                    Id = newShipments[i].id,
-                    Checklist__c = checklistSaveResult[i].getId());
-                    linkedShipments.add(linkedShipment);
-            }
-            Database.SaveResult[] linkedShipmentsSaveResult = Database.update(linkedShipments, false);
-    }
-
-    private static void updateChecklistLink (Database.SaveResult checklistSaveResult, Shipment__c newShipment){
-        ctuapptest__Shipment__c linkedShipment = new ctuapptest__Shipment__c(
-            Id = newShipment.id,
-            Checklist__c = checklistSaveResult.getId());
-        Database.SaveResult linkedShipmentSaveResult = Database.update(linkedShipment, false);
-        System.debug('linkedShipmentSaveResult - ' + linkedShipmentSaveResult);
-    }
-
-
-
-    private static Boolean isNameContainerChanged (Shipment__c newShipment, Shipment__c oldShipment){
-        return newShipment.Name != oldShipment.Name  
-        ||  newShipment.Freight_Container__c != oldShipment.Freight_Container__c;
     }
 
     /**
@@ -110,17 +72,36 @@ public with sharing class ShipmentTriggerHandler {
                 Id tempPcToDelete = [SELECT Id 
                                      FROM Packing_checklist__c
                                      WHERE Freight_Container__c IN :fcId
-                                     AND ShipmentId__c IN :sId].id;
+                                     AND Shipment__c IN :sId].id;
             
                 pcToDelete.add(tempPcToDelete);        
             }
         } catch (Exception e) {
             e.getMessage();
         } finally {
-        if(!pcToDelete.isEmpty()) {
-            Database.delete(pcToDelete, false);
+            if(!pcToDelete.isEmpty()) {
+                Database.delete(pcToDelete, false);
+            }
         }
     }
+
+    private static Boolean isNameContainerChanged (Shipment__c newShipment, Shipment__c oldShipment){
+        return newShipment.Name != oldShipment.Name  
+        ||  newShipment.Freight_Container__c != oldShipment.Freight_Container__c;
+    }
+
+    private static void updateChecklistLink (Database.SaveResult[] checklistSaveResult, List<Shipment__c> newShipments){
+        List<Shipment__c> linkedShipments = new List<Shipment__c>();
+            for (Integer i = 0; i < newShipments.size(); i++) {
+                ctuapptest__Shipment__c linkedShipment = new ctuapptest__Shipment__c(
+                    Id = newShipments[i].id,
+                    Checklist__c = checklistSaveResult[i].getId());
+                    linkedShipments.add(linkedShipment);
+            }
+        Database.SaveResult[] linkedShipmentsSaveResult = Database.update(linkedShipments, false);
 }
+
+
+
 
 }
