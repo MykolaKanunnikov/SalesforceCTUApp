@@ -15,7 +15,7 @@ trigger ShipmentTrigger on Shipment__c (before insert, before update,
             ShipmentTriggerHandler.handleDelete(Trigger.old);
         } 
         when AFTER_UPDATE{
-            ShipmentTriggerHandler.createChecklist(Trigger.new);
+
         }
     }
 
