@@ -38,52 +38,62 @@ public with sharing class ShipmentTriggerHandler {
     /**
      * @description createChecklist creates a Packing_checklist__c, which
      * we need as storage for values and relationships.
+     * If goods are safety, corresponding checklist items shall be prepopulated
      * @param  newShipments list of new Shipmnent__c 
      */
     public static void createChecklist(List<Shipment__c> newShipments){
         List<Packing_checklist__c> pcList = new List<Packing_checklist__c>();
+        
+        String dangerousGoodsValue = 'N/A';
         for (Shipment__c shipment : newShipments) {
-                Packing_checklist__c pc = new Packing_checklist__c(
-                    Freight_Container__c = shipment.Freight_Container__c,
-                    Shipment__c = shipment.id
-                );
-                pcList.add(pc);
+            if(shipment.Dangerous_goods__c){
+                dangerousGoodsValue = '';
+            }
+            Packing_checklist__c pc = new Packing_checklist__c(
+                Freight_Container__c = shipment.Freight_Container__c,
+                Shipment__c = shipment.id,
+                dangerousGoods20__c = dangerousGoodsValue,
+                dangerousGoods21__c = dangerousGoodsValue,
+                dangerousGoods22__c = dangerousGoodsValue,
+                dangerousGoods23__c = dangerousGoodsValue
+            );
+            pcList.add(pc);
         }
         Database.SaveResult[] checklistSaveResult = Database.insert(pcList, false);
         updateChecklistLink(checklistSaveResult, newShipments);
     }
 
     /**
-     * @description handleDelete removes unparented checklist records.
-     * As parents here considered not only Freight_Containers but 
-     * ShipmentId as well.
-     * @param  oldShipments records snapshot before deletion
-     */
-    public static void handleDelete(List<Shipment__c> oldShipments){
-        List<String> sId = new List<String>();
-        List<String> fcId = new List<String>();
-        for (Shipment__c shipment : oldShipments) {
-            sId.add(shipment.id);
-            fcId.add(shipment.Freight_Container__c);
-        }
-        List<Id> pcToDelete = new List<Id>();
-        try {
-            for (Shipment__c shipment : oldShipments) {
-                Id tempPcToDelete = [SELECT Id 
-                                     FROM Packing_checklist__c
-                                     WHERE Freight_Container__c IN :fcId
-                                     AND Shipment__c IN :sId].id;
-            
-                pcToDelete.add(tempPcToDelete);        
+     * @description handleNotDangerousGoodsBeforeUpdate fills
+     * dangerous goods checklist items as "not applicable" for
+     * safe goods and depopulates them for dangerous
+     * @param  newShipments 
+     * @param  oldShipments 
+     */ 
+    public static void handleNotDangerousGoodsBeforeUpdate(List<Shipment__c> newShipments, List<Shipment__c> oldShipments){
+        List<Packing_checklist__c> pcForUpdate = new List<Packing_checklist__c>();
+        for (Integer i = 0; i < newShipments.size(); i++){
+            if(newShipments[i].Dangerous_goods__c != oldShipments[i].Dangerous_goods__c){
+                Packing_checklist__c detailChecklist = [SELECT Id, dangerousGoods20__c, dangerousGoods21__c, 
+                                                                    dangerousGoods22__c, dangerousGoods23__c
+                                                        FROM Packing_checklist__c
+                                                        WHERE Shipment__c = :newShipments[i].id];
+                String dangerousGoodsValue = 'N/A';
+                if(newShipments[i].Dangerous_goods__c){
+                    dangerousGoodsValue = '';
+                }
+                detailChecklist.dangerousGoods20__c = dangerousGoodsValue;
+                detailChecklist.dangerousGoods21__c = dangerousGoodsValue;
+                detailChecklist.dangerousGoods22__c = dangerousGoodsValue;
+                detailChecklist.dangerousGoods23__c = dangerousGoodsValue;
+                pcForUpdate.add(detailChecklist);
             }
-        } catch (Exception e) {
-            e.getMessage();
-        } finally {
-            if(!pcToDelete.isEmpty()) {
-                Database.delete(pcToDelete, false);
+            if(!pcForUpdate.isEmpty()){
+                update pcForUpdate;
             }
         }
     }
+
 
     private static Boolean isNameContainerChanged (Shipment__c newShipment, Shipment__c oldShipment){
         return newShipment.Name != oldShipment.Name  

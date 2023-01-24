@@ -3,13 +3,13 @@ trigger PackingChecklistTrigger on Packing_checklist__c (before insert, before u
 
     switch on Trigger.operationType {
         when BEFORE_INSERT{
-
+            
         } 
         when BEFORE_UPDATE{
             PackingChecklistTriggerHandler.checkNo(Trigger.new);
         }
         when AFTER_INSERT{
-            
+
         }  
         when AFTER_DELETE{
             
