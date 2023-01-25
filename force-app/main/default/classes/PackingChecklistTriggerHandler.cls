@@ -21,5 +21,14 @@ public with sharing class PackingChecklistTriggerHandler {
         }
     }
 
+    /**
+     * @description markStagesCompleted 
+     * @param  newChecklistsList
+     * @param  oldChecklists
+     */
+    public static void markStagesCompleted(List<Packing_checklist__c> newChecklistsList, List<Packing_checklist__c> oldChecklists){
+        //
+    }
+
 
 }
