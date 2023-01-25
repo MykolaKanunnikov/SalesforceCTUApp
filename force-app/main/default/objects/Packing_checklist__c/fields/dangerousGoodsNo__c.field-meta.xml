@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Contains_NO__c</fullName>
+    <fullName>dangerousGoodsNo__c</fullName>
     <externalId>false</externalId>
-    <formula>IF( OR( packingAreaNo__c,
-containerConditionNo__c,
-packingContainerNo__c,
-dangerousGoodsNo__c,
-afterPackingNo__c,
-closingContainerNo__c,
-dispatchingContainerNo__c),
-true, 
+    <formula>IF( OR( ISPICKVAL(dangerousGoods20__c, &quot;NO&quot;),
+ISPICKVAL(dangerousGoods21__c, &quot;NO&quot;),
+ISPICKVAL(dangerousGoods22__c, &quot;NO&quot;),
+ISPICKVAL(dangerousGoods23__c, &quot;NO&quot;)),
+true,
 false)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Contains NO</label>
+    <label>dangerousGoodsNo</label>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>

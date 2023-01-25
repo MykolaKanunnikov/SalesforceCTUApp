@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>packingContainerNo__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( OR( ISPICKVAL(packingContainer13__c, &quot;NO&quot;),
+ISPICKVAL(packingContainer14__c, &quot;NO&quot;),
+ISPICKVAL(packingContainer15__c, &quot;NO&quot;),
+ISPICKVAL(packingContainer16__c, &quot;NO&quot;),
+ISPICKVAL(packingContainer17__c, &quot;NO&quot;),
+ISPICKVAL(packingContainer18__c, &quot;NO&quot;),
+ISPICKVAL(packingContainer19__c, &quot;NO&quot;)),
+true,
+false)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>packingContainerNo</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
