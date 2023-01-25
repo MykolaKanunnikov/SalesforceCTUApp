@@ -13,11 +13,11 @@ public with sharing class ShipmentController {
             String properPdfId;
             if(Test.isRunningTest()){
                 properPdfId = [SELECT Id FROM ContentAsset WHERE MasterLabel = :title].id;
-            }else{
+            } else {
                 properPdfId = [SELECT ContentDocumentId 
-                                      FROM ContentAsset
-                                      WHERE MasterLabel = :title AND NamespacePrefix = 'ctuapptest' 
-                                      LIMIT 1].ContentDocumentId;    
+                               FROM ContentAsset
+                               WHERE MasterLabel = :title AND NamespacePrefix = 'ctuapptest' 
+                               LIMIT 1].ContentDocumentId;    
             }
             resp = new Response(properPdfId);
         } catch (Exception e) {
@@ -36,8 +36,8 @@ public with sharing class ShipmentController {
         Response resp;
         try {            
              String currentChecklistId = [SELECT Id  
-                                         FROM Packing_checklist__c
-                                         WHERE Shipment__c =: recordId].id;
+                                          FROM Packing_checklist__c
+                                          WHERE Shipment__c =: recordId].id;
             resp = new Response(currentChecklistId);
         } catch (Exception e) {
             resp = new Response(e);

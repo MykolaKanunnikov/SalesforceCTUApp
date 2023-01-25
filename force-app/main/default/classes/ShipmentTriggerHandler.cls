@@ -13,7 +13,7 @@ public with sharing class ShipmentTriggerHandler {
                                                    WHERE Name = :shipment.Name
                                                    AND Freight_Container__c =:shipment.Freight_Container__c];
             if (!existingShipments.isEmpty()) {
-                throw new IllegalArgumentException(
+                shipment.addError(
                     'No duplicates for already existing shipment-container pairs allowed');
             }
         }    
@@ -27,7 +27,7 @@ public with sharing class ShipmentTriggerHandler {
                                                      WHERE Name =: newShipments[i].Name
                                                      AND Freight_Container__c =: newShipments[i].Freight_Container__c];
                 if (!linkedShipments.isEmpty()){
-                    throw new IllegalArgumentException(
+                    newShipments[i].addError(
                         'No duplicates for already existing shipment-container pairs allowed');
                 } 
             }
