@@ -3,7 +3,7 @@
     <fullName>Checklist_status__c</fullName>
     <externalId>false</externalId>
     <formula>IF( Checklist__r.Contains_NO__c, &quot;&apos;NO&apos; answer(s)&quot;,  
-IF(PICKLISTCOUNT( Checklist__r.Stages_completion__c ) = 7, &quot;Done&quot;, &quot;Pending&quot;))</formula>
+IF( Checklist__r.ChecklitsDone__c , &quot;Done&quot;, &quot;Pending&quot;))</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <label>Checklist status</label>
     <required>false</required>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>containerConditionDone__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( AND( NOT(ISPICKVAL(containerCondition8__c, &quot;&apos;&apos;&quot;)),
+NOT(ISPICKVAL(containerCondition9__c, &quot;&apos;&apos;&quot;)),
+NOT(ISPICKVAL(containerCondition10__c, &quot;&apos;&apos;&quot;)),
+NOT(ISPICKVAL(containerCondition11__c, &quot;&apos;&apos;&quot;)),
+NOT(ISPICKVAL(containerCondition12__c, &quot;&apos;&apos;&quot;))),
+true,
+false)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>containerConditionDone</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -43,11 +43,10 @@ public with sharing class ShipmentTriggerHandler {
      */
     public static void createChecklist(List<Shipment__c> newShipments){
         List<Packing_checklist__c> pcList = new List<Packing_checklist__c>();
-        
         String dangerousGoodsValue = 'N/A';
         for (Shipment__c shipment : newShipments) {
             if(shipment.Dangerous_goods__c){
-                dangerousGoodsValue = '';
+                dangerousGoodsValue = '\'\'';
             }
             Packing_checklist__c pc = new Packing_checklist__c(
                 Freight_Container__c = shipment.Freight_Container__c,
@@ -80,7 +79,7 @@ public with sharing class ShipmentTriggerHandler {
                                                         WHERE Shipment__c = :newShipments[i].id];
                 String dangerousGoodsValue = 'N/A';
                 if(newShipments[i].Dangerous_goods__c){
-                    dangerousGoodsValue = '';
+                    dangerousGoodsValue = '\'\'';
                 }
                 detailChecklist.dangerousGoods20__c = dangerousGoodsValue;
                 detailChecklist.dangerousGoods21__c = dangerousGoodsValue;
