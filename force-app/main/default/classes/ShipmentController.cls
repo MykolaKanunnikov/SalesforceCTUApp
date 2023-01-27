@@ -83,4 +83,40 @@ public with sharing class ShipmentController {
         }
         return resp;
     }
+
+    /**
+     * @description 
+     * @param  recordId 
+     * @return          
+     */ 
+    @AuraEnabled
+    public static Response getIconMapObject(String recordId){
+        Response resp;
+        try {
+            Packing_checklist__c pc = [SELECT Shipment__c, packingAreaDone__c, containerConditionDone__c, packingContainerDone__c, 
+                                              dangerousGoodsDone__c, afterPackingDone__c, closingContainerDone__c, dispatchingContainerDone__c,
+                                              packingAreaNo__c, containerConditionNo__c, packingContainerNo__c, dangerousGoodsNo__c, 
+                                              afterPackingNo__c, closingContainerNo__c, dispatchingContainerNo__c 
+                                       FROM Packing_checklist__c
+                                       WHERE Shipment__c =: recordId];
+            
+            String packingAreaValue = IconMapper.setIcon(pc.packingAreaDone__c, pc.packingAreaNo__c);
+            String containerConditionValue = IconMapper.setIcon(pc.containerConditionDone__c, pc.containerConditionNo__c);
+            String packingContainerValue = IconMapper.setIcon(pc.packingContainerDone__c, pc.packingContainerNo__c);
+            String dangerousGoodsValue = IconMapper.setIcon(pc.dangerousGoodsDone__c, pc.dangerousGoodsNo__c);
+            String afterPackingValue = IconMapper.setIcon(pc.afterPackingDone__c, pc.afterPackingNo__c);
+            String closingContainerValue = IconMapper.setIcon(pc.closingContainerDone__c, pc.closingContainerNo__c);
+            String dispatchingContainerValue = IconMapper.setIcon(pc.dispatchingContainerDone__c, pc.dispatchingContainerNo__c);
+                                    
+            IconMapper iconMapObject = new IconMapper(packingAreaValue, containerConditionValue, 
+                                                        packingContainerValue, dangerousGoodsValue, 
+                                                            afterPackingValue, closingContainerValue, 
+                                                                dispatchingContainerValue);
+            String json = JSON.serialize(iconMapObject);
+            resp = new Response(json);
+        } catch (Exception e) {
+            resp = new Response(e);
+        }
+        return resp;
+    }
 }
