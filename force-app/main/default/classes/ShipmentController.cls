@@ -85,9 +85,10 @@ public with sharing class ShipmentController {
     }
 
     /**
-     * @description 
+     * @description It instantiates an object, that contains icon-name
+     * for checklistTabset LWC component
      * @param  recordId 
-     * @return          
+     * @return          An object with fields representing one of 7 stages and containing icon-names
      */ 
     @AuraEnabled
     public static Response getIconMapObject(String recordId){
@@ -112,6 +113,7 @@ public with sharing class ShipmentController {
                                                         packingContainerValue, dangerousGoodsValue, 
                                                             afterPackingValue, closingContainerValue, 
                                                                 dispatchingContainerValue);
+            // IconMapper data type cannot be used in lwc, thus we stringify object
             String json = JSON.serialize(iconMapObject);
             resp = new Response(json);
         } catch (Exception e) {

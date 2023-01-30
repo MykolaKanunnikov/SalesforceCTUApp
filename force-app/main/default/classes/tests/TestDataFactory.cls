@@ -22,8 +22,6 @@ public with sharing class TestDataFactory {
         Database.SaveResult srS = Database.insert(s, false);
         String sId = srS.getId();
 
-       /* Packing_checklist__c pc = new Packing_checklist__c(Freight_Container__c = fcId, ShipmentId__c = sId);
-        Database.SaveResult srPc = Database.insert(pc, false);*/
         String pcId = [SELECT Id FROM Packing_checklist__c WHERE Freight_Container__c =: fcId].id;
 
         Map<String, String> idMap = new Map<String, String>();
@@ -33,10 +31,5 @@ public with sharing class TestDataFactory {
         
         return idMap;
     }
-
-    /*//ShipmentTrigger
-    public static String insertContainer(){
-        
-    }*/
 
 }

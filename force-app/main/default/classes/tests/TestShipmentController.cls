@@ -74,6 +74,30 @@ public with sharing class TestShipmentController {
         Assert.areEqual(false, resp.isSuccess, 'Response success status is TRUE');
     }
 
+    @isTest
+    private static void testGetIconMapObject(){
+        Map<String, String> idMap = TestDataFactory.checklistSetup();
+        String sId = idMap.get('sId');
+
+        Test.startTest();
+        Response resp = ShipmentController.getIconMapObject(sId);
+        Test.stopTest();
+
+        String str = (String)resp.responseObj;
+        Boolean containsWarning = str.contains('warning');
+        Boolean containsSuccess = str.contains('success');
+        Assert.areEqual(false, containsWarning, '"Warning" is not expected');
+        Assert.areEqual(true, containsSuccess, 'No "Success", but expected');
+    }
+
+    @isTest
+    private static void negativeTestGetIconMapObject(){
+        
+    }
+
+
+
+
 
 
 }
