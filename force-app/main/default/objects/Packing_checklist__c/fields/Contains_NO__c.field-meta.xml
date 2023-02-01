@@ -12,7 +12,7 @@ dispatchingContainerNo__c),
 true, 
 false)</formula>
     <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-    <label>Contains NO</label>
+    <label>Contains &apos;NO&apos;</label>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Checkbox</type>

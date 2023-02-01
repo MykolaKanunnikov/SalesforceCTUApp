@@ -158,7 +158,7 @@
     <label>Shipment</label>
     <nameField>
         <label>Container list № (e.g. MBL)</label>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Text</type>
     </nameField>
     <pluralLabel>Shipments</pluralLabel>

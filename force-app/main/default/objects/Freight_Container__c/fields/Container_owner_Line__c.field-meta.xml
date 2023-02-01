@@ -8,7 +8,7 @@
     <relationshipLabel>Freight Containers</relationshipLabel>
     <relationshipName>Freight_Containers</relationshipName>
     <required>false</required>
-    <trackHistory>false</trackHistory>
+    <trackHistory>true</trackHistory>
     <trackTrending>false</trackTrending>
     <type>Lookup</type>
 </CustomField>

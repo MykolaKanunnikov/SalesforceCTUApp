@@ -157,7 +157,7 @@
     <label>Freight Container</label>
     <nameField>
         <label>Freight Container Number</label>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <type>Text</type>
     </nameField>
     <pluralLabel>Freight Containers</pluralLabel>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MobileChecklist</fullName>
+    <fields>Shipment__c</fields>
+    <fields>Freight_Container__c</fields>
+    <fields>ChecklitsDone__c</fields>
+    <fields>Contains_NO__c</fields>
+    <label>MobileChecklist</label>
+</CompactLayout>
