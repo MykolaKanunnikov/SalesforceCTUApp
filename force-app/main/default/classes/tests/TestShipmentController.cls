@@ -90,14 +90,6 @@ public with sharing class TestShipmentController {
         Assert.areEqual(true, containsSuccess, 'No "Success", but expected');
     }
 
-    @isTest
-    private static void negativeTestGetIconMapObject(){
-        
-    }
-
-
-
-
 
 
 }

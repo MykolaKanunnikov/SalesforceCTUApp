@@ -32,4 +32,22 @@ public with sharing class TestDataFactory {
         return idMap;
     }
 
+    public static String insertFreightContainer(){
+        Freight_Container__c fc = new Freight_Container__c(Name = 'test');
+        Database.SaveResult srFc = Database.insert(fc, false);
+        String fcId = srFc.getId();
+        return fcId;
+    }
+
+    public static Database.SaveResult insertShipment(String name, String freightContainer){
+        Shipment__c s = new Shipment__c(Name = name, Freight_Container__c = freightContainer);
+        Database.SaveResult srS = Database.insert(s, false);
+        return srS;
+    }
+
+
+
+
+
+
 }
