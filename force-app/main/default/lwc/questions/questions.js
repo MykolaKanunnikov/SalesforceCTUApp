@@ -55,3 +55,14 @@ export const dispatchingContainer = {
     "q33": "33. For the cargo, have the number and types of packages and the cargo mass (for Customs purposes) been communicated to the carrier, as early as required by the carrier?",
     "q34": "34. For Dangerous Goods, has a Shipper’s Declaration and, where required, a Packing Certificate declaration been made and communicated to the carrier as early as required by the carrier?"
 }
+
+/*
+
+Copyright regarding the questions above is jointly held by the partners of the Cargo Integrity Group, 
+comprising Bureau International des Containers et du Transport Intermodal (BIC), Container Owners 
+Association (COA), International Federation of Freight Forwarders Associations (FIATA),
+Global Shippers Forum (GSF), International Cargo Handling Coordination Association (ICHCA International), 
+TT Club and World Shipping Council (WSC). All rights reserved. 
+All use, in any form or by any means, should appropriately attribute the copyright holders.
+
+*/

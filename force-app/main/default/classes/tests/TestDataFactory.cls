@@ -1,7 +1,6 @@
 @isTest
 public with sharing class TestDataFactory {
 
-    //ShipmentController
     public static String insertContentAsset(){
         ContentAsset ca = new ContentAsset(
             language = 'en_US',

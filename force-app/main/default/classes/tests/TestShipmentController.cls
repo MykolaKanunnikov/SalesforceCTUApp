@@ -82,7 +82,7 @@ public with sharing class TestShipmentController {
         Test.startTest();
         Response resp = ShipmentController.getIconMapObject(sId);
         Test.stopTest();
-
+        
         String str = (String)resp.responseObj;
         Boolean containsWarning = str.contains('warning');
         Boolean containsSuccess = str.contains('success');
