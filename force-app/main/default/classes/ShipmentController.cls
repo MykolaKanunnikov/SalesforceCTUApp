@@ -100,19 +100,8 @@ public with sharing class ShipmentController {
                                               afterPackingNo__c, closingContainerNo__c, dispatchingContainerNo__c 
                                        FROM Packing_checklist__c
                                        WHERE Shipment__c =: recordId];
-            
-            String packingAreaValue = IconMapper.setIcon(pc.packingAreaDone__c, pc.packingAreaNo__c);
-            String containerConditionValue = IconMapper.setIcon(pc.containerConditionDone__c, pc.containerConditionNo__c);
-            String packingContainerValue = IconMapper.setIcon(pc.packingContainerDone__c, pc.packingContainerNo__c);
-            String dangerousGoodsValue = IconMapper.setIcon(pc.dangerousGoodsDone__c, pc.dangerousGoodsNo__c);
-            String afterPackingValue = IconMapper.setIcon(pc.afterPackingDone__c, pc.afterPackingNo__c);
-            String closingContainerValue = IconMapper.setIcon(pc.closingContainerDone__c, pc.closingContainerNo__c);
-            String dispatchingContainerValue = IconMapper.setIcon(pc.dispatchingContainerDone__c, pc.dispatchingContainerNo__c);
-                                    
-            IconMapper iconMapObject = new IconMapper(packingAreaValue, containerConditionValue, 
-                                                        packingContainerValue, dangerousGoodsValue, 
-                                                            afterPackingValue, closingContainerValue, 
-                                                                dispatchingContainerValue);
+                                                
+            IconMapper iconMapObject = new IconMapper(pc);
             // IconMapper data type cannot be used in lwc, thus we stringify object
             String json = JSON.serialize(iconMapObject);
             resp = new Response(json);

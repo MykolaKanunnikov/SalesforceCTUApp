@@ -16,7 +16,7 @@ public with sharing class TestShipmentTriggerHandler {
     private static void testAvoidDuplicatesBeforeUpdate(){
         String fcId = TestDataFactory.insertFreightContainer();
         Database.SaveResult firstSr = TestDataFactory.insertShipment('test1', fcId);
-        Database.SaveResult secondSr = TestDataFactory.insertShipment('test2', fcId);
+        TestDataFactory.insertShipment('test2', fcId);
         Test.startTest();
         Shipment__c shipmentUpdate = new Shipment__c(
             Id = firstSr.getId(),
@@ -36,7 +36,7 @@ public with sharing class TestShipmentTriggerHandler {
             Id = sId,
             Dangerous_goods__c = true
         );
-        Database.SaveResult updateResult = Database.update(shipmentUpdate, false);
+        Database.update(shipmentUpdate, false);
         Test.stopTest();
         Packing_checklist__c pc = [SELECT dangerousGoodsDone__c FROM Packing_checklist__c WHERE Shipment__c =:sId];
         Assert.areEqual(false, pc.dangerousGoodsDone__c, 'Dangerous goods stage should not be done');

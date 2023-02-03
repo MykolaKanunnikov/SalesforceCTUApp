@@ -1,6 +1,15 @@
+/**
+ * @description It's a wrapper for everything a controller returns
+ */
 public with sharing class Response {
+    /**
+     * @description Apex property
+     */
     @AuraEnabled
     public Object responseObj { get; set; }
+    /**
+     * @description Apex property
+     */
     @AuraEnabled
     public Boolean isSuccess { get; set; }
     

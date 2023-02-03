@@ -1,6 +1,7 @@
 import { LightningElement, api } from 'lwc';
 import formFactor from '@salesforce/client/formFactor'
 import getIconMapObject from '@salesforce/apex/ShipmentController.getIconMapObject';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 
 export default class ChecklistTabset extends LightningElement {
