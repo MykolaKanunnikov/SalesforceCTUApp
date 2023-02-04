@@ -1,3 +1,6 @@
+/**
+ * @description The only controller in the app. Used in LWC
+ */
 public with sharing class ShipmentController {
 
     /**
@@ -69,6 +72,7 @@ public with sharing class ShipmentController {
      * @param  currentChecklistId id of the proper object
      * @param  valueId            full name of the field to be updated
      * @param  value              'YES', 'NO' or 'N/A' string
+     * @return                     success status or exception
      */
     @AuraEnabled
     public static Response updateRadioValue(String currentChecklistId, String valueId, String value){
