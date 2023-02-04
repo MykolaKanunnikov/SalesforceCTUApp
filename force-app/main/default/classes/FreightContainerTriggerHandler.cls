@@ -1,4 +1,9 @@
+/**
+ * @description Following methods encapsulate a whole FreightContainerTrigger logic
+ */ 
 public with sharing class FreightContainerTriggerHandler {
+
+    private static final String DUPLICATE_ERROR = 'No freight container duplicates allowed';
 
     /**
      * @description It ensures that containers are unique.
@@ -13,7 +18,7 @@ public with sharing class FreightContainerTriggerHandler {
                                                      FROM Freight_Container__c
                                                      WHERE Name IN: namesList];
         if(!fcSameNameList.isEmpty()){
-            newContainers[0].addError('No freight container duplicates allowed');
+            newContainers[0].addError(DUPLICATE_ERROR);
         }  
     }
 
@@ -34,7 +39,7 @@ public with sharing class FreightContainerTriggerHandler {
                                                          FROM Freight_Container__c
                                                          WHERE Name IN: newNamesList];
             if(!fcSameNameList.isEmpty()){
-                newContainers[0].addError('No freight container duplicates allowed');
+                newContainers[0].addError(DUPLICATE_ERROR);
             }  
         }
     }
