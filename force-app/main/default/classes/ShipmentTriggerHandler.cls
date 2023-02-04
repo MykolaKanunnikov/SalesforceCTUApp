@@ -19,6 +19,11 @@ public with sharing class ShipmentTriggerHandler {
         }    
     }
 
+    /**
+     * @description It ensures that shipment-container pairs are unique.
+     * @param  newShipment
+     * @param  oldShipments
+     */
     public static void avoidDuplicatesBeforeUpdate(List<Shipment__c> newShipments, List<Shipment__c> oldShipments){
         for(Integer i = 0; i < newShipments.size(); i++){
             if (isNameContainerChanged(newShipments[i], oldShipments[i])){ 

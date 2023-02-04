@@ -41,13 +41,13 @@ public with sharing class TestDataFactory {
 
     /**
      * @description insert test FreightContainer__c
-     * @return   return id of test Freight_Container__c
+     * @param name FreightContainer__c.Name
+     * @return   SaveResult object of test Freight_Container__c
      */
-    public static String insertFreightContainer(){
-        Freight_Container__c fc = new Freight_Container__c(Name = 'test');
+    public static Database.SaveResult insertFreightContainer(String name){
+        Freight_Container__c fc = new Freight_Container__c(Name = name);
         Database.SaveResult srFc = Database.insert(fc, false);
-        String fcId = srFc.getId();
-        return fcId;
+        return srFc;
     }
 
     /**

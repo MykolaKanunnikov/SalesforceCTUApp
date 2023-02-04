@@ -1,5 +1,4 @@
-trigger ShipmentTrigger on Shipment__c (before insert, before update, 
-                                        after insert, after delete, after update) {
+trigger ShipmentTrigger on Shipment__c (before insert, before update, after insert) {
 
     switch on Trigger.operationType {
         when BEFORE_INSERT{
@@ -12,12 +11,6 @@ trigger ShipmentTrigger on Shipment__c (before insert, before update,
         when AFTER_INSERT{
             ShipmentTriggerHandler.createChecklist(Trigger.new);
         }  
-        when AFTER_DELETE{
-
-        } 
-        when AFTER_UPDATE{
-
-        }
     }
 
 }

@@ -3,7 +3,8 @@ public with sharing class TestShipmentTriggerHandler {
 
     @isTest
     private static void testAvoidDuplicatesBeforeInsert(){
-        String fcId = TestDataFactory.insertFreightContainer();
+        Database.SaveResult fcSr = TestDataFactory.insertFreightContainer('test');
+        String fcId = fcSr.getId();
         Database.SaveResult firstSr = TestDataFactory.insertShipment('test', fcId);
         Test.startTest();
         Database.SaveResult secondSr = TestDataFactory.insertShipment('test', fcId);
@@ -14,7 +15,8 @@ public with sharing class TestShipmentTriggerHandler {
 
     @isTest
     private static void testAvoidDuplicatesBeforeUpdate(){
-        String fcId = TestDataFactory.insertFreightContainer();
+        Database.SaveResult fcSr = TestDataFactory.insertFreightContainer('test');
+        String fcId = fcSr.getId();
         Database.SaveResult firstSr = TestDataFactory.insertShipment('test1', fcId);
         TestDataFactory.insertShipment('test2', fcId);
         Test.startTest();
