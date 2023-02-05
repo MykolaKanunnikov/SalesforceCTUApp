@@ -1,3 +1,7 @@
+/**
+ * @author Mykola Kanunnikov (Nick Eve)
+ */
+
 @isTest
 public with sharing class TestShipmentController {
 

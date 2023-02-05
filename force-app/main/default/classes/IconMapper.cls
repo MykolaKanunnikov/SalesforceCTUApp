@@ -1,5 +1,6 @@
 /**
- *  @description Plain old Apex class
+ * @description Plain old Apex class
+ * @author Mykola Kanunnikov (Nick Eve)
  */ 
 public with sharing class IconMapper {
     

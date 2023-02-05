@@ -1,3 +1,7 @@
+/**
+ * @author Mykola Kanunnikov (Nick Eve);
+ */
+
 import { NavigationMixin } from 'lightning/navigation';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import getFileRecordId from '@salesforce/apex/ShipmentController.getFileRecordId';

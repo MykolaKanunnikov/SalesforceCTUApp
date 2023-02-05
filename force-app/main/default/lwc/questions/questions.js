@@ -1,3 +1,12 @@
+/*
+Copyright regarding the following questions is jointly held by the partners of the Cargo Integrity Group, 
+comprising Bureau International des Containers et du Transport Intermodal (BIC), Container Owners 
+Association (COA), International Federation of Freight Forwarders Associations (FIATA),
+Global Shippers Forum (GSF), International Cargo Handling Coordination Association (ICHCA International), 
+TT Club and World Shipping Council (WSC). All rights reserved. 
+All use, in any form or by any means, should appropriately attribute the copyright holders.
+*/
+
 // It's designed to let developer change checklist labels from one place,
 // e.g. when the checklist shall be updated.
 
@@ -56,13 +65,3 @@ export const dispatchingContainer = {
     "q34": "34. For Dangerous Goods, has a Shipper’s Declaration and, where required, a Packing Certificate declaration been made and communicated to the carrier as early as required by the carrier?"
 }
 
-/*
-
-Copyright regarding the questions above is jointly held by the partners of the Cargo Integrity Group, 
-comprising Bureau International des Containers et du Transport Intermodal (BIC), Container Owners 
-Association (COA), International Federation of Freight Forwarders Associations (FIATA),
-Global Shippers Forum (GSF), International Cargo Handling Coordination Association (ICHCA International), 
-TT Club and World Shipping Council (WSC). All rights reserved. 
-All use, in any form or by any means, should appropriately attribute the copyright holders.
-
-*/

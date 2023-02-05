@@ -1,5 +1,6 @@
 /**
  * @description Following methods encapsulate a whole FreightContainerTrigger logic
+ * @author Mykola Kanunnikov (Nick Eve)
  */ 
 public with sharing class FreightContainerTriggerHandler {
 

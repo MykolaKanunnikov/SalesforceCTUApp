@@ -1,3 +1,7 @@
+/**
+ * @author Mykola Kanunnikov (Nick Eve);
+ */
+
 import { LightningElement, api } from 'lwc';
 import formFactor from '@salesforce/client/formFactor'
 import getIconMapObject from '@salesforce/apex/ShipmentController.getIconMapObject';

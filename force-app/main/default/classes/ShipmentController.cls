@@ -1,5 +1,6 @@
 /**
  * @description The only controller in the app. Used in LWC
+ * @author Mykola Kanunnikov (Nick Eve)
  */
 public with sharing class ShipmentController {
 
@@ -52,6 +53,7 @@ public with sharing class ShipmentController {
 
     /**
      * @description It gives actual checklist values to display
+     * The method is so long since dynamic query is not used to avoid SOQL injections
      * @param  currentChecklistId id of the proper object 
      * @param fields              depends on calling component
      * @return                    actual checklist values to display 

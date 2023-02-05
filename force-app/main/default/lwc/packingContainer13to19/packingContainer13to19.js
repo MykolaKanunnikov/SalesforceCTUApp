@@ -1,3 +1,7 @@
+/**
+ * @author Mykola Kanunnikov (Nick Eve);
+ */
+
 import { LightningElement, api } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation'
 import { openReference, radioChange, options, checklistSetup } from 'c/radioGroupButtonAndHelp';
