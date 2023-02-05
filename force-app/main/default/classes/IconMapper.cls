@@ -3,13 +3,26 @@
  */ 
 public with sharing class IconMapper {
     
-    String packingArea;
-    String containerCondition;
-    String packingContainer;
-    String dangerousGoods;
-    String afterPacking;
-    String closingContainer;
-    String dispatchingContainer;
+    @AuraEnabled
+    public String packingArea { get; set; }
+
+    @AuraEnabled
+    public String containerCondition { get; set; }
+    
+    @AuraEnabled
+    public String packingContainer { get; set; }
+    
+    @AuraEnabled
+    public String dangerousGoods { get; set; }
+    
+    @AuraEnabled
+    public String afterPacking { get; set; }
+    
+    @AuraEnabled
+    public String closingContainer { get; set; }
+    
+    @AuraEnabled
+    public String dispatchingContainer { get; set; }
 
     /**
      * @description It's the only IconMapper constructor. 

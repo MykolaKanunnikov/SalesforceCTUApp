@@ -15,8 +15,7 @@ export default class ChecklistTabset extends LightningElement {
         getIconMapObject({ recordId: this.recordId })
             .then(resp => {
                 if (resp.isSuccess) {
-                    const respObject = JSON.parse(resp.responseObj);
-                    this.iconName = respObject;
+                    this.iconName = resp.responseObj;
                 } else {
                     const errorEvent = new ShowToastEvent({
                         title: 'Status icons JS error',

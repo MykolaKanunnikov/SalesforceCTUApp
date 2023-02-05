@@ -90,7 +90,7 @@ public with sharing class ShipmentController {
 
     /**
      * @description It instantiates an object, that contains icon-name
-     * for checklistTabset LWC component
+     * for checklistTabset LWC
      * @param  recordId 
      * @return          An object with fields representing one of 7 stages and containing icon-names
      */ 
@@ -106,9 +106,7 @@ public with sharing class ShipmentController {
                                        WHERE Shipment__c =: recordId];
                                                 
             IconMapper iconMapObject = new IconMapper(pc);
-            // IconMapper data type cannot be used in lwc, thus we stringify object
-            String json = JSON.serialize(iconMapObject);
-            resp = new Response(json);
+            resp = new Response(iconMapObject);
         } catch (Exception e) {
             resp = new Response(e);
         }
