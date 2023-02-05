@@ -18,8 +18,7 @@ export default class PackingArea1to7 extends NavigationMixin(LightningElement) {
 
     // set values and currentChecklistId fields
     connectedCallback() {
-        const fields = 'ctuapptest__packingArea1__c, ctuapptest__packingArea2__c, ctuapptest__packingArea3__c, ctuapptest__packingArea4__c, ctuapptest__packingArea5__c, ctuapptest__packingArea6__c, ctuapptest__packingArea7__c';
-        checklistSetup.call(this, fields);
+        checklistSetup.call(this, 'packingArea');
     }
 
     // define radio group settings 

@@ -60,9 +60,54 @@ public with sharing class ShipmentController {
     public static Response getChecklistValues(String currentChecklistId, String fields){
         Response resp;
         try {
-            // get values from database
-            String query = 'SELECT ' + fields + ' FROM Packing_checklist__c WHERE Id =\'' + currentChecklistId + '\'';
-            Packing_checklist__c values =  Database.query(query);
+            Packing_checklist__c values = null;
+            if(fields == 'packingArea'){
+                values = [SELECT ctuapptest__packingArea1__c, ctuapptest__packingArea2__c, 
+                                 ctuapptest__packingArea3__c, ctuapptest__packingArea4__c, 
+                                 ctuapptest__packingArea5__c, ctuapptest__packingArea6__c, 
+                                 ctuapptest__packingArea7__c
+                          FROM Packing_checklist__c
+                          WHERE Id =: currentChecklistId
+                          WITH SECURITY_ENFORCED];
+            } else if (fields == 'containerCondition'){
+                values = [SELECT ctuapptest__containerCondition8__c, ctuapptest__containerCondition9__c, 
+                                 ctuapptest__containerCondition10__c
+                          FROM Packing_checklist__c
+                          WHERE Id =: currentChecklistId
+                          WITH SECURITY_ENFORCED];                
+            } else if (fields == 'packingContainer'){
+                values = [SELECT ctuapptest__packingContainer13__c, ctuapptest__packingContainer14__c, 
+                                 ctuapptest__packingContainer15__c, ctuapptest__packingContainer16__c, 
+                                 ctuapptest__packingContainer17__c, ctuapptest__packingContainer18__c, 
+                                 ctuapptest__packingContainer19__c
+                          FROM Packing_checklist__c
+                          WHERE Id =: currentChecklistId
+                          WITH SECURITY_ENFORCED];                
+            } else if (fields == 'dangerousGoods'){
+                values = [SELECT ctuapptest__dangerousGoods20__c, ctuapptest__dangerousGoods21__c, 
+                                 ctuapptest__dangerousGoods22__c, ctuapptest__dangerousGoods23__c
+                          FROM Packing_checklist__c
+                          WHERE Id =: currentChecklistId
+                          WITH SECURITY_ENFORCED];                
+            } else if (fields == 'afterPacking'){
+                values = [SELECT ctuapptest__afterPacking24__c, ctuapptest__afterPacking25__c, 
+                                 ctuapptest__afterPacking26__c, ctuapptest__afterPacking27__c
+                          FROM Packing_checklist__c
+                          WHERE Id =: currentChecklistId
+                          WITH SECURITY_ENFORCED];                
+            } else if (fields == 'closingContainer'){
+                values = [SELECT ctuapptest__closingContainer28__c, ctuapptest__closingContainer29__c
+                          FROM Packing_checklist__c
+                          WHERE Id =: currentChecklistId
+                          WITH SECURITY_ENFORCED];                
+            } else if (fields == 'dispatchingContainer'){
+                values = [SELECT ctuapptest__dispatchingContainer30__c, ctuapptest__dispatchingContainer31__c, 
+                                 ctuapptest__dispatchingContainer32__c, ctuapptest__dispatchingContainer33__c, 
+                                 ctuapptest__dispatchingContainer34__c
+                          FROM Packing_checklist__c
+                          WHERE Id =: currentChecklistId
+                          WITH SECURITY_ENFORCED];                
+            }
             resp = new Response(values);
         } catch (Exception e) {
             resp = new Response(e);

@@ -17,8 +17,7 @@ export default class DangerousGoods20to23 extends NavigationMixin(LightningEleme
 
     // set values and currentChecklistId fields
     connectedCallback() {
-        const fields = 'ctuapptest__dangerousGoods20__c, ctuapptest__dangerousGoods21__c, ctuapptest__dangerousGoods22__c, ctuapptest__dangerousGoods23__c';
-        checklistSetup.call(this, fields);
+        checklistSetup.call(this, 'dangerousGoods');
     }
 
     // define radio group settings 

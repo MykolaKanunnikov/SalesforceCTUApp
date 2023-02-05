@@ -1,6 +1,0 @@
-<results total="1" totalViolations="1">
-        
-      <result file="force-app\main\default\classes\ShipmentController.cls" engine="pmd">
-          <violation severity="3" line="65" column="59" endLine="65" endColumn="63" rule="ApexSOQLInjection" category="Security" url="https://pmd.github.io/pmd-6.51.0/pmd_rules_apex_security.html#apexsoqlinjection">Avoid untrusted/unescaped variables in DML query</violation>
-      </result>
-</results>

@@ -17,8 +17,7 @@ export default class ContainerCondition8to12 extends NavigationMixin(LightningEl
 
     // set values and currentChecklistId fields
     connectedCallback() {
-        const fields = 'ctuapptest__containerCondition8__c, ctuapptest__containerCondition9__c, ctuapptest__containerCondition10__c, ctuapptest__containerCondition11__c, ctuapptest__containerCondition12__c';
-        checklistSetup.call(this, fields);
+        checklistSetup.call(this, 'containerCondition');
     }
 
     // define radio group settings 

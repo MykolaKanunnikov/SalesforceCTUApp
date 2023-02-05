@@ -17,8 +17,7 @@ export default class DispatchingContainer30to34 extends NavigationMixin(Lightnin
 
     // set values and currentChecklistId fields
     connectedCallback() {
-        const fields = 'ctuapptest__dispatchingContainer30__c, ctuapptest__dispatchingContainer31__c, ctuapptest__dispatchingContainer32__c, ctuapptest__dispatchingContainer33__c, ctuapptest__dispatchingContainer34__c';
-        checklistSetup.call(this, fields);
+        checklistSetup.call(this, 'dispatchingContainer');
     }
 
     // define radio group settings 
