@@ -43,7 +43,7 @@ public with sharing class TestShipmentController {
     private static void testGetChecklistValues(){
         Map<String, String> idMap = TestDataFactory.checklistSetup();
         Test.startTest();
-        Response resp = ShipmentController.getChecklistValues(idMap.get('pcId'), 'packingArea1__c');
+        Response resp = ShipmentController.getChecklistValues(idMap.get('pcId'), 'packingArea');
         Test.stopTest();
         Assert.areEqual(true, resp.isSuccess, 'Response success status is FALSE');
     }
@@ -51,7 +51,7 @@ public with sharing class TestShipmentController {
     @isTest
     private static void negativeTestGetChecklistValues(){
         Test.startTest();
-        Response resp = ShipmentController.getChecklistValues('0000001', 'packingArea1__c');
+        Response resp = ShipmentController.getChecklistValues('0000001', 'packingArea');
         Test.stopTest();
         Assert.areEqual(false, resp.isSuccess, 'Response success status is TRUE');
     }
