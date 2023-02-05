@@ -19,7 +19,8 @@ public with sharing class ShipmentController {
             } else {
                 properPdfId = [SELECT ContentDocumentId 
                                FROM ContentAsset
-                               WHERE MasterLabel = :title AND NamespacePrefix = 'ctuapptest' 
+                               WHERE MasterLabel = :title AND NamespacePrefix = 'ctuapptest'
+                               WITH SECURITY_ENFORCED 
                                LIMIT 1].ContentDocumentId;    
             }
             resp = new Response(properPdfId);
@@ -40,13 +41,15 @@ public with sharing class ShipmentController {
         try {            
              String currentChecklistId = [SELECT Id  
                                           FROM Packing_checklist__c
-                                          WHERE Shipment__c =: recordId].id;
+                                          WHERE Shipment__c =: recordId
+                                          WITH SECURITY_ENFORCED].id;
             resp = new Response(currentChecklistId);
         } catch (Exception e) {
             resp = new Response(e);
         }
         return resp;
     }
+
     /**
      * @description It gives actual checklist values to display
      * @param  currentChecklistId id of the proper object 
@@ -81,7 +84,9 @@ public with sharing class ShipmentController {
             String jsonString = '{"id": "' + currentChecklistId + '", "' + valueId + '": "' + value + '" }';
             Packing_checklist__c pc = (Packing_checklist__c)JSON.deserialize(jsonString, Packing_checklist__c.class);
             resp = new Response();
-            update pc;
+            Packing_checklist__c[] pcList = new Packing_checklist__c[]{pc};
+            SObjectAccessDecision decision = Security.stripInaccessible(AccessType.UPDATABLE, pcList);
+            update decision.getRecords();
         } catch (Exception e) {
             resp = new Response(e);
         }
@@ -103,7 +108,8 @@ public with sharing class ShipmentController {
                                               packingAreaNo__c, containerConditionNo__c, packingContainerNo__c, dangerousGoodsNo__c, 
                                               afterPackingNo__c, closingContainerNo__c, dispatchingContainerNo__c 
                                        FROM Packing_checklist__c
-                                       WHERE Shipment__c =: recordId];
+                                       WHERE Shipment__c =: recordId
+                                       WITH SECURITY_ENFORCED];
                                                 
             IconMapper iconMapObject = new IconMapper(pc);
             resp = new Response(iconMapObject);

@@ -16,7 +16,8 @@ public with sharing class FreightContainerTriggerHandler {
         }
         List<Freight_Container__c> fcSameNameList = [SELECT Name
                                                      FROM Freight_Container__c
-                                                     WHERE Name IN: namesList];
+                                                     WHERE Name IN: namesList
+                                                     WITH SECURITY_ENFORCED];
         if(!fcSameNameList.isEmpty()){
             newContainers[0].addError(DUPLICATE_ERROR);
         }  
@@ -37,7 +38,8 @@ public with sharing class FreightContainerTriggerHandler {
         if(!newNamesList.equals(oldNamesList)){
             List<Freight_Container__c> fcSameNameList = [SELECT Name
                                                          FROM Freight_Container__c
-                                                         WHERE Name IN: newNamesList];
+                                                         WHERE Name IN: newNamesList
+                                                         WITH SECURITY_ENFORCED];
             if(!fcSameNameList.isEmpty()){
                 newContainers[0].addError(DUPLICATE_ERROR);
             }  

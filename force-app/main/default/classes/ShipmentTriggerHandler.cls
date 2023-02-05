@@ -21,7 +21,8 @@ public with sharing class ShipmentTriggerHandler {
         List<Shipment__c> existingShipments = [SELECT Id
                                                FROM Shipment__c
                                                WHERE Name IN: shipmentNames
-                                               AND Freight_Container__c IN: shipmentContainers];
+                                               AND Freight_Container__c IN: shipmentContainers
+                                               WITH SECURITY_ENFORCED];
         if (!existingShipments.isEmpty()) {
             newShipments[0].addError(DUPLICATE_ERROR);
         }
@@ -47,7 +48,8 @@ public with sharing class ShipmentTriggerHandler {
             List<Shipment__c> linkedShipments = [SELECT Id
                                                  FROM Shipment__c
                                                  WHERE Name IN: newShipmentNames
-                                                 AND Freight_Container__c IN: newShipmentContainers];
+                                                 AND Freight_Container__c IN: newShipmentContainers
+                                                 WITH SECURITY_ENFORCED];
             if (!linkedShipments.isEmpty()){
                 newShipments[0].addError(DUPLICATE_ERROR);
             } 
@@ -77,7 +79,8 @@ public with sharing class ShipmentTriggerHandler {
             );
             pcList.add(pc);
         }
-        Database.SaveResult[] checklistSaveResult = Database.insert(pcList, false);
+        SObjectAccessDecision decision = Security.stripInaccessible(AccessType.CREATABLE, pcList);
+        Database.SaveResult[] checklistSaveResult = Database.insert(decision.getRecords(), false);
         updateChecklistLink(checklistSaveResult, newShipments);
     }
 
@@ -99,7 +102,8 @@ public with sharing class ShipmentTriggerHandler {
         List<Packing_checklist__c> detailChecklists = [SELECT Id, dangerousGoods20__c, dangerousGoods21__c, 
                                                        dangerousGoods22__c, dangerousGoods23__c
                                                        FROM Packing_checklist__c
-                                                       WHERE Shipment__c IN: changedDangerousShipments];   
+                                                       WHERE Shipment__c IN: changedDangerousShipments
+                                                       WITH SECURITY_ENFORCED];   
         String dangerousGoodsValue = 'N/A';
         for (Integer i = 0; i < detailChecklists.size(); i++) {
             if(changedDangerousShipments[i].Dangerous_goods__c){
@@ -111,9 +115,8 @@ public with sharing class ShipmentTriggerHandler {
             detailChecklists[i].dangerousGoods23__c = dangerousGoodsValue;
             pcForUpdate.add(detailChecklists[i]);
         }  
-        if(!pcForUpdate.isEmpty()){
-            update pcForUpdate;
-        }
+        SObjectAccessDecision decision = Security.stripInaccessible(AccessType.UPDATABLE, pcForUpdate);
+        Database.update(decision.getRecords(), false);
     }
 
 
@@ -130,7 +133,8 @@ public with sharing class ShipmentTriggerHandler {
                     Checklist__c = checklistSaveResult[i].getId());
                 linkedShipments.add(linkedShipment);
             }
-        Database.update(linkedShipments, false);
+            SObjectAccessDecision decision = Security.stripInaccessible(AccessType.UPDATABLE, linkedShipments);
+            Database.update(decision.getRecords(), false);
     }
 
 

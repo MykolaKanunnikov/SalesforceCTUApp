@@ -83,7 +83,7 @@ public with sharing class TestShipmentController {
         Response resp = ShipmentController.getIconMapObject(sId);
         Test.stopTest();
         
-        String str = (String)resp.responseObj;
+        String str = JSON.serialize(resp.responseObj);
         Boolean containsWarning = str.contains('warning');
         Boolean containsSuccess = str.contains('success');
         Assert.areEqual(false, containsWarning, '"Warning" is not expected');
