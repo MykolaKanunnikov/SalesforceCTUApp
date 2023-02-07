@@ -9,7 +9,7 @@ platform designed to digitalize a checklist completion within the platform.
 
 Copyright to [Container packing checklist](https://www.ttclub.com/media/files/tt-club/cig/cig-ctu-code-container-packing-checklist-september-2022.pdf) is jointly held by the partners of the Cargo Integrity Group, comprising Bureau International des Containers et du Transport Intermodal (BIC), Container Owners Association (COA), International Federation of Freight Forwarders Associations (FIATA), Global Shippers Forum (GSF), International Cargo Handling Co-ordination Association (ICHCA International), TT Club and World Shipping Council (WSC). All rights reserved. All use, in any form or by any means, should appropriately attribute the copyright holders.
 
-The Container packing checklist is based on the CTU Code (IMO/ILO/UNECE Code of Practice for Packing of Cargo Transport Units, 2014 edition). CTU Code can be found on both the websites of the [International Maritime Organization (IMO)](www.imo.org/en/OurWork/Safety/Pages/CTU-Code.aspx) and the [United Nations Economic Commission for Europe (UNECE)](www.unece.org/trans/wp24/guidelinespackingctus/intro.html).
+The Container packing checklist refers to the CTU Code (IMO/ILO/UNECE Code of Practice for Packing of Cargo Transport Units, 2014 edition). CTU Code can be found on both the websites of the [International Maritime Organization (IMO)](www.imo.org/en/OurWork/Safety/Pages/CTU-Code.aspx) and the [United Nations Economic Commission for Europe (UNECE)](www.unece.org/trans/wp24/guidelinespackingctus/intro.html).
 
 N.B.
 - CTU stands for cargo transport unit. It includes freight containers.
