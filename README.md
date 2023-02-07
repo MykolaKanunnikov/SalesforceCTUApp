@@ -5,7 +5,8 @@
 Container Packing Checklist app is a free, and opensource application for Salesforce 
 platform designed to digitalize a checklist completion within the platform.
 * Tech: Apex, LWC (JavaScript + HTML);
-* Mobile: Supported.
+* Mobile: Supported;
+* Salesforce Code Analyzer indicates no security and performance issues
 
 Copyright to [Container packing checklist](https://www.ttclub.com/media/files/tt-club/cig/cig-ctu-code-container-packing-checklist-september-2022.pdf) is jointly held by the partners of the Cargo Integrity Group, comprising Bureau International des Containers et du Transport Intermodal (BIC), Container Owners Association (COA), International Federation of Freight Forwarders Associations (FIATA), Global Shippers Forum (GSF), International Cargo Handling Co-ordination Association (ICHCA International), TT Club and World Shipping Council (WSC). All rights reserved. All use, in any form or by any means, should appropriately attribute the copyright holders.
 
