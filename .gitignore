@@ -40,11 +40,11 @@ $RECYCLE.BIN/
 .env
 
 # Other
-.husky
-.vscode
-/config
-/manifest
-/scripts
+.husky/
+.vscode/
+config/
+manifest/
+scripts/
 .eslintignore
 .forceignore
 .prettierignore
