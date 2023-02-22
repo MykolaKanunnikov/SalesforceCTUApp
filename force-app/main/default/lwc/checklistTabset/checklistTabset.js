@@ -50,7 +50,7 @@ export default class ChecklistTabset extends LightningElement {
         }
     }
 
-    // unlock renderedCallback once tab is swithched
+    // unlock renderedCallback once tab is switched
     letUpdateIcons() {
         this.iconName = '';
     }
