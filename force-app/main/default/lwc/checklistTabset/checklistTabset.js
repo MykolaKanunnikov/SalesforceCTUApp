@@ -16,27 +16,29 @@ export default class ChecklistTabset extends LightningElement {
 
     // display status icons depending on answers in the checklist
     renderedCallback() {
-        getIconMapObject({ recordId: this.recordId })
-            .then(resp => {
-                if (resp.isSuccess) {
-                    this.iconName = resp.responseObj;
-                } else {
+        if (this.iconName === '') {
+            getIconMapObject({ recordId: this.recordId })
+                .then(resp => {
+                    if (resp.isSuccess) {
+                        this.iconName = resp.responseObj;
+                    } else {
+                        const errorEvent = new ShowToastEvent({
+                            title: 'Status icons JS error',
+                            variant: 'error',
+                            message: resp.responseObj
+                        });
+                        this.dispatchEvent(errorEvent);
+                    }
+                })
+                .catch(error => {
                     const errorEvent = new ShowToastEvent({
-                        title: 'Status icons JS error',
+                        title: 'Status icons Apex error',
                         variant: 'error',
-                        message: resp.responseObj
+                        message: "Error: " + error.body.message
                     });
                     this.dispatchEvent(errorEvent);
-                }
-            })
-            .catch(error => {
-                const errorEvent = new ShowToastEvent({
-                    title: 'Status icons Apex error',
-                    variant: 'error',
-                    message: "Error: " + error.body.message
-                });
-                this.dispatchEvent(errorEvent);
-            })
+                })
+        }
     }
 
     // vertical variant isn't a good fit for small-sized phones and tablets
@@ -46,6 +48,11 @@ export default class ChecklistTabset extends LightningElement {
         } else {
             return 'standard';
         }
+    }
+
+    // unlock renderedCallback once tab is swithched
+    letUpdateIcons() {
+        this.iconName = '';
     }
 
 }
