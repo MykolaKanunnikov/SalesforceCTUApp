@@ -1,0 +1,13 @@
+{
+    "isSuccess": true,
+    "responseObj": {
+      "packingArea": "utility:threedots",
+      "containerCondition": "utility:warning",
+      "packingContainer": "utility:threedots",
+      "dangerousGoods": "utility:success",
+      "afterPacking": "utility:warning",
+      "closingContainer": "utility:threedots",
+      "dispatchingContainer": "utility:warning"
+    }
+}
+  
