@@ -87,7 +87,7 @@ describe('c-checklist-tabset', () => {
     
     it('shows toast on rejected promise', async () => {
         // Assign mock value for resolved Apex promise
-        getIconMapObject.mockRejectedValue(APEX_CONTACTS_ERROR);
+        getIconMapObject.mockRejectedValue(APEX_ERROR);
 
         // Arrange
         const element = createElement('c-checklist-tabset', {
