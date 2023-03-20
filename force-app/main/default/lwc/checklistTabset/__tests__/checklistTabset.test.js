@@ -7,7 +7,7 @@ const mockGetIconMapObject = require('./data/getIconMapObject.json');
 const mockResponseFail = require('./data/responseFail.json');
 
 // Sample error for imperative Apex call
-const APEX_CONTACTS_ERROR = {
+const APEX_ERROR = {
     body: { message: 'An internal server error has occurred' },
     ok: false,
     status: 400,
