@@ -51,3 +51,5 @@ scripts/
 jest.config.js
 package.json
 sfdx-project.json
+
+.pmdCache
