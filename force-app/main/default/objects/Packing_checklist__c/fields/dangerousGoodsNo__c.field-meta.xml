@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>dangerousGoodsNo__c</fullName>
+    <deprecated>false</deprecated>
     <externalId>false</externalId>
     <formula>IF( OR( ISPICKVAL(dangerousGoods20__c, &quot;NO&quot;),
 ISPICKVAL(dangerousGoods21__c, &quot;NO&quot;),

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>packingContainerDone__c</fullName>
+    <deprecated>false</deprecated>
     <externalId>false</externalId>
     <formula>IF( AND( NOT(ISPICKVAL(packingContainer13__c, &quot;&apos;&apos;&quot;)),
 NOT(ISPICKVAL(packingContainer14__c, &quot;&apos;&apos;&quot;)),
