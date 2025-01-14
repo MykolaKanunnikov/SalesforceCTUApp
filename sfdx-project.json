@@ -6,7 +6,7 @@
     }
   ],
   "name": "CTU",
-  "namespace": "",
+  "namespace": "ctuapptest",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "57.0"
 }
