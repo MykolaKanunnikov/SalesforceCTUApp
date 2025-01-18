@@ -39,17 +39,4 @@ $RECYCLE.BIN/
 # Local environment variables
 .env
 
-# Other
-.husky/
-.vscode/
-config/
-manifest/
-scripts/
-.eslintignore
-.forceignore
-.prettierignore
-jest.config.js
-package.json
-sfdx-project.json
-
 .pmdCache

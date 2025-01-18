@@ -1,0 +1,33 @@
+name: CI on PR
+
+on:
+    workflow_dispatch:
+    pull_request:
+        types: [opened, edited, synchronize, reopened]
+
+jobs:
+    salesforce-code-analyzer-workflow:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check out files
+              uses: actions/checkout@v4
+
+            - name: Install Salesforce CLI
+              run: npm install -g @salesforce/cli@latest
+
+            - name: Install Latest Salesforce Code Analyzer CLI Plugin
+              run: sf plugins install code-analyzer@latest
+
+            - name: Run Salesforce Code Analyzer
+              id: run-code-analyzer
+              uses: forcedotcom/run-code-analyzer@v2.0.0
+              with:
+                # Arguments reference:
+                # https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_code-analyzer_commands_unified.htm#cli_reference_code-analyzer_run_unified
+                run-arguments: --workspace . --view detail --output-file sfca_results.sarif
+                results-artifact-name: salesforce-code-analyzer-results
+
+            - name: Check the outputs to determine whether to fail
+              if: |
+                steps.run-code-analyzer.outputs.num-sev1-violations > 0
+              run: exit 1
