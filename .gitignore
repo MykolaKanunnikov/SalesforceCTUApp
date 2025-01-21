@@ -40,3 +40,6 @@ $RECYCLE.BIN/
 .env
 
 .pmdCache
+
+# Not expected to change
+force-app/main/default/profiles/Admin.profile-meta.xml
