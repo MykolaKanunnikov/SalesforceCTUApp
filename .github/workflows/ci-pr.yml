@@ -56,6 +56,10 @@ jobs:
             - name: 'Push source to scratch org'
               run: sf project deploy start
 
+            # Assign permissionset
+            - name: 'Assign permissionset to default user'
+              run: sf org assign permset --name CTU_User
+
             # Run Apex tests in scratch org
             - name: 'Run Apex tests'
               run: sf apex run test --wait 10 --test-level RunLocalTests --code-coverage --result-format human --output-dir ./tests/apex
