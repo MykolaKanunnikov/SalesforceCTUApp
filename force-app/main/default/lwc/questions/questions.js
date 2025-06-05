@@ -7,18 +7,57 @@ TT Club and World Shipping Council (WSC). All rights reserved.
 All use, in any form or by any means, should appropriately attribute the copyright holders.
 */
 
+import id from "@salesforce/user/Id"
+
 // It's designed to let developer change checklist labels from one place,
 // e.g. when the checklist shall be updated.
 
-export const packingArea = {
-    "q1": "1. Is the type of container appropriate for the cargo to be carried?",
-    "q2": "2. Is the container positioned so that it can be accessed safely?",
-    "q3": "3. Have steps been taken to avoid contamination of the packing area by pests?",
-    "q4": "4. Has a packing plan been prepared showing the arrangements of goods in the container?",
-    "q5": "5. Are the maximum permitted payload limits of the container sufficient for the intended load?",
-    "q6": "6. Do all timber pallets, dunnage or other wood packing material meet ISPM-15 standards and show the required markings?",
-    "q7": "7. Have staff assigned to pack the container been trained to understand the practices of safe packing and securing and avoidance of pest contamination?"
-}
+
+export const packingArea = [
+  {
+    name: "1. Is the type of container appropriate for the cargo to be carried?",
+    fieldId: "packingArea1__c",
+    picklistValues: "values.cpuapptest__packingArea1__c",
+    buttonId: 1,
+  },
+  {
+    name: "2. Is the container positioned so that it can be accessed safely?",
+    fieldId: "packingArea2__c",
+    picklistValues: "values.cpuatttest__packingArea2__c",
+    buttonId: 2,
+  },
+  {
+    name: "3. Have steps been taken to avoid contamination of the packing area by pests?",
+    fieldId: "packingArea3__c",
+    picklistValues: "values.cpuapptest__packingArea3__c",
+    buttonId: 3,
+  },
+  {
+    name: "4. Has a packing plan been prepared showing the arrangements of goods in the container?",
+    fieldId: "packingArea4__c",
+    picklistValues: "values.cpuapptest__packingArea4__c",
+    buttonId: 4,
+  },
+  {
+    name: "5. Are the maximum permitted payload limits of the container sufficient for the intended load?",
+    fieldId: "packingArea5__c",
+    picklistValues: "values.cpuapptest__packingArea5__c",
+    buttonId: 5,
+  },
+  {
+    name: "6. Do all timber pallets, dunnage or other wood packing material meet ISPM-15 standards and show the required markings?",
+    fieldId: "packingArea6__c",
+    picklistValues: "values.cpuapptest__packingArea6__c",
+    buttonId: 6,
+  },
+  {
+    name: "7. Have staff assigned to pack the container been trained to understand the practices of safe packing and securing and avoidance of pest contamination?",
+    fieldId: "packingArea7__c",
+    picklistValues: "values.cpuapptest__packingArea7__c",
+    buttonId: 7,
+  }
+];
+
 
 export const containerCondition = {
     "q8": "8. Is the container exterior free from soil or other visible infestation by pests?",

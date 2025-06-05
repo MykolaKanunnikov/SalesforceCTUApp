@@ -69,11 +69,10 @@ function checklistSetup(fields) {
         })
 }
 
-
-
-// display a relevant reference file    
 function openReference(event) {
     let itemId = event.target.dataset.id;
+    console.log(itemId);
+    
     let itemTitle = `asset_${itemId}pdf`;
     getFileRecordId({ title: itemTitle })
         .then(resp => {
@@ -104,7 +103,8 @@ function openReference(event) {
             });
             this.dispatchEvent(errorEvent);
         })
-}
+    }
+
 
 // save values from a radio button to the database
 function radioChange(event) {
@@ -133,4 +133,4 @@ function radioChange(event) {
     }
 }
 
-export { openReference, radioChange, options, checklistSetup };
+export { radioChange, options, checklistSetup, openReference };

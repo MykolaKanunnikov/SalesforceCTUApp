@@ -1,22 +1,19 @@
 <template>
-    <!-- 2 -->
-     <template for:each={questions} for:item="question">
-    <div key={question.buttonId} class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+        <div class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
         <lightning-layout horizontal-align="spread">
+
             <lightning-layout-item flexibility="auto" padding="horizontal-small">
-                <lightning-radio-group label={question.name} options={options} value={question.picklistValues}
-                    type="button" data-id={question.fieldId} onchange={handleChange}>
+                <lightning-radio-group label={packingArea.q2} options={options} value={values.ctuapptest__packingArea2__c}
+                    type="button" data-id="packingArea2__c" onchange={handleChange}>
                 </lightning-radio-group>
             </lightning-layout-item>
 
             <lightning-layout-item flexibility="auto" padding="around-large">
                 <lightning-button variant="base" label="" title="CTU Code reference" icon-name="utility:help"
-                    icon-position="right" class="slds-m-left_x-small" data-id={question.buttonId}
+                    icon-position="right" class="slds-m-left_x-small" data-id="2"
                     onclick={handleClick}></lightning-button>
             </lightning-layout-item>
 
         </lightning-layout>
     </div>
-     </template>
-
 </template>
