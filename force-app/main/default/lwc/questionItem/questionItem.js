@@ -1,6 +1,6 @@
 import { api, LightningElement } from 'lwc';
 import { openReference } from 'c/radioGroupButtonAndHelp';
-import { packingArea } from 'c/questions';
+
 
 
 export default class QuestionItem extends LightningElement {
