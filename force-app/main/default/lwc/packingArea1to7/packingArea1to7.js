@@ -15,6 +15,7 @@ export default class PackingArea1to7 extends NavigationMixin(LightningElement) {
     currentChecklistId;
 
     questions = packingArea;
+    
 
     values = '';
 
@@ -23,7 +24,7 @@ export default class PackingArea1to7 extends NavigationMixin(LightningElement) {
 
     // set values and currentChecklistId fields
     connectedCallback() {
-        checklistSetup.call(this, 'packingArea'); 
+        checklistSetup.call(this, 'packingArea');         
     }
 
     // define radio group settings 
