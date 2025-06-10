@@ -1,20 +1,27 @@
-import { api, LightningElement } from 'lwc';
-import { options, checklistSetup,radioChange } from 'c/radioGroupButtonAndHelp';
+import { api, LightningElement,track } from "lwc";
+import {
+    options,
+} from "c/radioGroupButtonAndHelp";
 
 export default class QuestionAnswer extends LightningElement {
-    @api recordId
     @api title;
     @api fieldValue;
-    @api fieldReference;
+    @api fieldPath
+    @api values;
+    currentValue;
+    
     options = options();
 
-    // save values from a radio button to the 3database
     handleChange(event) {
-        radioChange.call(this, event);
+        this.dispatchEvent(new CustomEvent('answer',{detail: {
+            value: event.target.value,
+            field: this.fieldPath
+        } }));
     }
 
-    connectedCallback() {
-        checklistSetup.call(this, 'packingArea');         
+    connectedCallback(){
+        let fieldReferenceToGetValue = "ctuapptest__" + this.fieldPath
+        this.currentValue = this.values[fieldReferenceToGetValue]
     }
     
 }

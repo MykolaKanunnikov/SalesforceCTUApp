@@ -40,6 +40,7 @@ function checklistSetup(fields) {
                 .then(response => {
                     if (response.isSuccess) {
                         this.values = response.responseObj;
+
                     } else {
                         const valuesError = new ShowToastEvent({
                             title: 'Checklist values error',
@@ -57,7 +58,6 @@ function checklistSetup(fields) {
                     });
                     this.dispatchEvent(onValues);
                 })
-
         })
         .catch(errorOnId => {
             const onId = new ShowToastEvent({

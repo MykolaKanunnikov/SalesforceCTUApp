@@ -1,5 +1,10 @@
 <template>
-        <lightning-radio-group label={title} options={options} value={fieldValue}
-            type="button" data-id={fieldValue} onchange={handleChange}>
+        <lightning-radio-group
+            label={title}
+            options={options}
+            value={currentValue}
+            type="button"
+            onchange={handleChange}
+        >
         </lightning-radio-group>
 </template>

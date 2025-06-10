@@ -1,18 +1,32 @@
 <template>
- <template for:each={questions} for:item="question">
-    <div key={question.buttonId} class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
-        <lightning-layout horizontal-align="spread">
-            <lightning-layout-item flexibility="auto" padding="horizontal-small">
-                <lightning-radio-group label={question.name} options={options} value={question.picklistValues}
-                    type="button" data-id={question.fieldId} onchange={handleChange}>
-                </lightning-radio-group>
-            </lightning-layout-item>
-            <lightning-layout-item flexibility="auto" padding="around-large">
-                <lightning-button variant="base" label="" title="CTU Code reference" icon-name="utility:help"
-                    icon-position="right" class="slds-m-left_x-small" data-id={question.buttonId}
-                    onclick={handleClick}></lightning-button>
-            </lightning-layout-item>
-        </lightning-layout>
-    </div>
-</template>
+    <template if:true={values} for:each={questions} for:item="question">
+        <div
+            key={question.buttonId}
+            class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none"
+        >
+            <lightning-layout horizontal-align="spread">
+                <lightning-layout-item
+                    flexibility="auto"
+                    padding="horizontal-small"
+                >
+                    <c-question-answer
+                        onanswer={handleChange}
+                        title={question.name}
+                        field-value={question.fieldId}
+                        field-path={question.fieldId}
+                        values={values}
+                    >
+                    </c-question-answer>
+                </lightning-layout-item>
+                <lightning-layout-item
+                    flexibility="auto"
+                    padding="around-large"
+                >
+                    <c-reference-button
+                        reference={question.buttonId}
+                    ></c-reference-button>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </template>
 </template>
