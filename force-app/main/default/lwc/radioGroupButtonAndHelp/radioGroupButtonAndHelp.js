@@ -133,4 +133,4 @@ function radioChange(event) {
     }
 }
 
-export { radioChange, options, checklistSetup, openReference };
+export { radioChange, options, checklistSetup, openReference, namespacePrefix };

@@ -1,7 +1,10 @@
-import { api, LightningElement,track } from "lwc";
+import { api, LightningElement } from "lwc";
 import {
     options,
+    namespacePrefix
+    
 } from "c/radioGroupButtonAndHelp";
+
 
 export default class QuestionAnswer extends LightningElement {
     @api title;
@@ -15,7 +18,8 @@ export default class QuestionAnswer extends LightningElement {
     handleChange(event) {
         this.dispatchEvent(new CustomEvent('answer',{detail: {
             value: event.target.value,
-            field: this.fieldPath
+            field: this.fieldPath,
+            fieldWithPrefix: namespacePrefix + this.fieldPath
         } }));
     }
 

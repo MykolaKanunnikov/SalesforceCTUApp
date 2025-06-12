@@ -59,47 +59,186 @@ export const packingArea = [
 ];
 
 
-export const containerCondition = {
-    "q8": "8. Is the container exterior free from soil or other visible infestation by pests?",
-    "q9": "9. Is the container exterior in good condition, and not significantly distorted, cracked or bent?",
-    "q10": "10. Does the container have a valid CSC Approval Plate?",
-    "q11": "11. Is the container interior free from signs of damage, signs of water ingress, rust, residues, stains or debris?",
-    "q12": "12. Is the container interior free from soil or other visible infestation by pests?"
-}
+export const containerCondition = [
+  {
+    name: "8. Is the container exterior free from soil or other visible infestation by pests?",
+    fieldId: "containerCondition8__c",
+    picklistValues: "values.ctuapptest__containerCondition8__c",
+    buttonId: 8,
+  },
+  {
+    name: "9. Is the container exterior in good condition, and not significantly distorted, cracked or bent?",
+    fieldId: "containerCondition9__c",
+    picklistValues: "values.ctuapptest__containerCondition9__c",
+    buttonId: 9,
+  },
+  {
+    name: "10. Does the container have a valid CSC Approval Plate?",
+    fieldId: "containerCondition10__c",
+    picklistValues: "values.ctuapptest__containerCondition10__c",
+    buttonId: 10,
+  },
+  {
+    name: "11. Is the container interior free from signs of damage, signs of water ingress, rust, residues, stains or debris?",
+    fieldId: "containerCondition11__c",
+    picklistValues: "values.ctuapptest__containerCondition11__c",
+    buttonId: 11,
+  },
+  {
+    name: "12. Is the container interior free from soil or other visible infestation by pests?",
+    fieldId: "containerCondition12__c",
+    picklistValues: "values.ctuapptest__containerCondition12__c",
+    buttonId: 12,
+  }
+];
 
-export const packingContainer = {
-    "q13": "13. Is the cargo to be packed free from soil or other visible infestation by pests?",
-    "q14": "14. Has the heavier cargo been packed at the bottom of the container with any lighter weight cargo on top?",
-    "q15": "15. Is the cargo distributed evenly across the floor of the container to spread the load?",
-    "q16": "16. Is the centre of gravity approximately in the centre of the container?",
-    "q17": "17. Has the cargo been packed in approximately even layers?",
-    "q18": "18. Have packages with package orientation labels been stowed the correct way up?",
-    "q19": "19. Has locking, blocking or lashing been used to prevent the cargo from sliding and tipping in the container in any direction?"
-}
 
-export const dangerousGoods = {
-    "q20": "20. Are all Dangerous Goods packages marked and labelled in accordance with the IMDG Code?",
-    "q21": "21. Are all Dangerous Goods packages undamaged and in sound condition?",
-    "q22": "22. Where Dangerous Goods comprise only part of the cargo, are they packed as close to the doors as possible?",
-    "q23": "23. Has the container been placarded in accordance with the IMDG Code?"
-}
+export const packingContainer = [
+  {
+    name: "13. Is the cargo to be packed free from soil or other visible infestation by pests?",
+    fieldId: "packingContainer13__c",
+    picklistValues: "values.ctuapptest__packingContainer13__c",
+    buttonId: "13and27",
+  },
+  {
+    name: "14. Has the heavier cargo been packed at the bottom of the container with any lighter weight cargo on top?",
+    fieldId: "packingContainer14__c",
+    picklistValues: "values.ctuapptest__packingContainer14__c",
+    buttonId: 14,
+  },
+  {
+    name: "15. Is the cargo distributed evenly across the floor of the container to spread the load?",
+    fieldId: "packingContainer15__c",
+    picklistValues: "values.ctuapptest__packingContainer15__c",
+    buttonId: 15,
+  },
+  {
+    name: "16. Is the centre of gravity approximately in the centre of the container?",
+    fieldId: "packingContainer16__c",
+    picklistValues: "values.ctuapptest__packingContainer16__c",
+    buttonId: 16,
+  },
+  {
+    name: "17. Has the cargo been packed in approximately even layers?",
+    fieldId: "packingContainer17__c",
+    picklistValues: "values.ctuapptest__packingContainer17__c",
+    buttonId: 17,
+  },
+  {
+    name: "18. Have packages with package orientation labels been stowed the correct way up?",
+    fieldId: "packingContainer18__c",
+    picklistValues: "values.ctuapptest__packingContainer18__c",
+    buttonId: 18,
+  },
+  {
+    name: "19. Has locking, blocking or lashing been used to prevent the cargo from sliding and tipping in the container in any direction?",
+    fieldId: "packingContainer19__c",
+    picklistValues: "values.ctuapptest__packingContainer19__c",
+    buttonId: 19,
+  }
+];
 
-export const afterPacking = {
-    "q24": "24. Have all void spaces (gaps) within the cargo stow and/or between the cargo and container structure been filled?",
-    "q25": "25. Is the cargo blocking and bracing distributed over a sufficiently large area of the container (e.g. by use of spreader beams)?",
-    "q26": "26. Are lashings secured to the container so as not to over-stress its structure?",
-    "q27": "27. Are both the interior and the exterior of the container, and its cargo, free of soil, or other visible infestation by pests?"
-}
 
-export const closingContainer = {
-    "q28": "28. Have the doors of the container been securely closed and latched?",
-    "q29": "29. Has a seal been affixed to the container and its number recorded?"
-}
+export const dangerousGoods = [
+  {
+    name: "20. Are all Dangerous Goods packages marked and labelled in accordance with the IMDG Code?",
+    fieldId: "dangerousGoods20__c",
+    picklistValues: "values.ctuapptest__dangerousGoods20__c",
+    buttonId: "20and21",
+  },
+  {
+    name: "21. Are all Dangerous Goods packages undamaged and in sound condition?",
+    fieldId: "dangerousGoods21__c",
+    picklistValues: "values.ctuapptest__dangerousGoods21__c",
+    buttonId: "20and21",
+  },
+  {
+    name: "22. Where Dangerous Goods comprise only part of the cargo, are they packed as close to the doors as possible?",
+    fieldId: "dangerousGoods22__c",
+    picklistValues: "values.ctuapptest__dangerousGoods22__c",
+    buttonId: 22,
+  },
+  {
+    name: "23. Has the container been placarded in accordance with the IMDG Code?",
+    fieldId: "dangerousGoods23__c",
+    picklistValues: "values.ctuapptest__dangerousGoods23__c",
+    buttonId: 23,
+  }
+];
 
-export const dispatchingContainer = {
-    "q30": "30. For the packed container, has the Verified Gross Mass been communicated to the carrier as early as required by the carrier?",
-    "q31": "31. For the packed container, has the identity of the container and the seal number been communicated to the carrier as early as required by the carrier?",
-    "q32": "32. For the cargo, has an accurate description (including classification) of the cargo itself and the packaging been communicated to the carrier, as early as required by the carrier?",
-    "q33": "33. For the cargo, have the number and types of packages and the cargo mass (for Customs purposes) been communicated to the carrier, as early as required by the carrier?",
-    "q34": "34. For Dangerous Goods, has a Shipper’s Declaration and, where required, a Packing Certificate declaration been made and communicated to the carrier as early as required by the carrier?"
-}
+
+export const afterPacking = [
+  {
+    name: "24. Have all void spaces (gaps) within the cargo stow and/or between the cargo and container structure been filled?",
+    fieldId: "afterPacking24__c",
+    picklistValues: "values.ctuapptest__afterPacking24__c",
+    buttonId: "24and25",
+  },
+  {
+    name: "25. Is the cargo blocking and bracing distributed over a sufficiently large area of the container (e.g. by use of spreader beams)?",
+    fieldId: "afterPacking25__c",
+    picklistValues: "values.ctuapptest__afterPacking25__c",
+    buttonId: "24and25",
+  },
+  {
+    name: "26. Are lashings secured to the container so as not to over-stress its structure?",
+    fieldId: "afterPacking26__c",
+    picklistValues: "values.ctuapptest__afterPacking26__c",
+    buttonId: 26,
+  },
+  {
+    name: "27. Are both the interior and the exterior of the container, and its cargo, free of soil, or other visible infestation by pests?",
+    fieldId: "afterPacking27__c",
+    picklistValues: "values.ctuapptest__afterPacking27__c",
+    buttonId: "13and27",
+  }
+];
+
+export const closingContainer = [
+  {
+    name: "28. Have the doors of the container been securely closed and latched?",
+    fieldId: "closingContainer28__c",
+    picklistValues: "values.ctuapptest__closingContainer28__c",
+    buttonId: "28to31",
+  },
+  {
+    name: "29. Has a seal been affixed to the container and its number recorded?",
+    fieldId: "closingContainer29__c",
+    picklistValues: "values.ctuapptest__closingContainer29__c",
+    buttonId: "28to31",
+  }
+];
+
+
+export const dispatchingContainer = [
+  {
+    name: "30. For the packed container, has the Verified Gross Mass been communicated to the carrier as early as required by the carrier?",
+    fieldId: "dispatchingContainer30__c",
+    picklistValues: "values.ctuapptest__dispatchingContainer30__c",
+    buttonId: "28to31",
+  },
+  {
+    name: "31. For the packed container, has the identity of the container and the seal number been communicated to the carrier as early as required by the carrier?",
+    fieldId: "dispatchingContainer31__c",
+    picklistValues: "values.ctuapptest__dispatchingContainer31__c",
+    buttonId: "28to31",
+  },
+  {
+    name: "32. For the cargo, has an accurate description (including classification) of the cargo itself and the packaging been communicated to the carrier, as early as required by the carrier?",
+    fieldId: "dispatchingContainer32__c",
+    picklistValues: "values.ctuapptest__dispatchingContainer32__c",
+    buttonId: 32,
+  },
+  {
+    name: "33. For the cargo, have the number and types of packages and the cargo mass (for Customs purposes) been communicated to the carrier, as early as required by the carrier?",
+    fieldId: "dispatchingContainer33__c",
+    picklistValues: "values.ctuapptest__dispatchingContainer33__c",
+    buttonId: 33,
+  },
+  {
+    name: "34. For Dangerous Goods, has a Shipper’s Declaration and, where required, a Packing Certificate declaration been made and communicated to the carrier as early as required by the carrier?",
+    fieldId: "dispatchingContainer34__c",
+    picklistValues: "values.ctuapptest__dispatchingContainer34__c",
+    buttonId: 34,
+  }
+];

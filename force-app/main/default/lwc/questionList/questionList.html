@@ -1,0 +1,15 @@
+<template>
+    <template if:true={questions} for:each={questions} for:item="question">
+        <template if:true={values}>
+            <template if:true={currentChecklistId}>
+                <c-question-item
+                    key={question.buttonId}
+                    question={question}
+                    values={values}
+                    checklist={currentChecklistId}
+                >
+                </c-question-item>
+            </template>
+        </template>
+    </template>
+</template>
