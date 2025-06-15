@@ -1,7 +1,7 @@
 <template>
     <template if:true={questions} for:each={questions} for:item="question">
         <template if:true={values}>
-            <template if:true={currentChecklistId}>
+            <template if:true={values}>
                 <c-question-item
                     key={question.buttonId}
                     question={question}

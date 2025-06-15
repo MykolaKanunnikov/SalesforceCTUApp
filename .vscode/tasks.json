@@ -1,0 +1,24 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run afmt on current file",
+            "type": "shell",
+            "command": "~/afmt -w ${file}", // assume afmt binary is on the ~ path
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,           // Echo the command
+                "reveal": "never",      // Do not show the terminal
+                "focus": false,         // Do not focus on the terminal
+                "panel": "dedicated",   // Use a dedicated terminal (optional)
+                "clear": false          // Do not clear the terminal before execution
+            },
+            "background": true,         // Marks the task as running in the background
+            "problemMatcher": [],
+            "detail": "Runs afmt against the currently opened file"
+        }
+    ]
+}
