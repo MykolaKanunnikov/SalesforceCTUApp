@@ -1,15 +1,16 @@
 <template>
-    <template if:true={questions} for:each={questions} for:item="question">
-        <template if:true={values}>
-            <template if:true={values}>
-                <c-question-item
-                    key={question.buttonId}
-                    question={question}
-                    values={values}
-                    checklist={currentChecklistId}
-                >
-                </c-question-item>
-            </template>
-        </template>
-    </template>
+  <template for:each={questions} for:item="question">
+    <c-question-item
+      key={question.buttonId}
+      question={question}
+      values={values}
+      checklist={currentChecklistId}
+      onanswer={handleChange}
+    ></c-question-item>
+  </template>
+
+  <lightning-button
+    label="Save Answers"
+    onclick={handleSave}
+  ></lightning-button>
 </template>

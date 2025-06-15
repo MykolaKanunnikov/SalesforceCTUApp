@@ -141,6 +141,23 @@ public with sharing class ShipmentController {
         return resp;
     }
 
+@AuraEnabled
+public static Response updateChecklistValues(String checklist, Map<String, String> values) {
+    Response resp = new Response();
+    try {
+        Packing_checklist__c pc = new Packing_checklist__c(Id = checklist);
+        for (String key : values.keySet()) {
+            pc.put(key, values.get(key));
+        }
+        SObjectAccessDecision decision = Security.stripInaccessible(AccessType.UPDATABLE, new List<Packing_checklist__c>{pc});
+        update decision.getRecords();
+    } catch (Exception e) {
+        resp = new Response(e);
+    }
+    return resp;
+}
+
+
     /**
      * @description It instantiates an object, that contains icon-name
      * for checklistTabset LWC

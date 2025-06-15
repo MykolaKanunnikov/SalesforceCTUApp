@@ -13,17 +13,20 @@ export default class QuestionAnswer extends LightningElement {
         { label: "N/A", value: "N/A" }
     ];
 
-    handleChange(event) {
-        this.dispatchEvent(
-            new CustomEvent("answer", {
-                detail: {
-                    value: event.target.value,
-                    field: this.fieldPath,
-                    fieldWithPrefix: "ctuapptest__" + this.fieldPath
-                }
-            })
-        );
-    }
+handleChange(event) {
+    this.dispatchEvent(
+        new CustomEvent("answer", {
+            detail: {
+                value: event.target.value,
+                field: this.fieldPath,
+                fieldWithPrefix: "ctuapptest__" + this.fieldPath
+            },
+            bubbles: true,
+            composed: true
+        })
+    );
+}
+
 
     connectedCallback() {
         let fieldReferenceToGetValue = "ctuapptest__" + this.fieldPath;
