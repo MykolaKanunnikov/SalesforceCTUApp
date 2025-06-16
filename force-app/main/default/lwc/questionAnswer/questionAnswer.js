@@ -20,7 +20,9 @@ export default class QuestionAnswer extends LightningElement {
                     value: event.target.value,
                     field: this.fieldPath,
                     fieldWithPrefix: "ctuapptest__" + this.fieldPath
-                }
+                },
+                bubbles: true,
+                composed: true
             })
         );
     }

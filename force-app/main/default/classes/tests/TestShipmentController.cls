@@ -77,6 +77,21 @@ public with sharing class TestShipmentController {
         Test.stopTest();
         Assert.areEqual(false, resp.isSuccess, 'Response success status is TRUE');
     }
+    
+    @IsTest
+    static void testUpdateChecklistValuesSuccess() {
+        Map<String, Id> idMap = TestDataFactory.checklistSetup();
+        String pcId = idMap.get('pcId');
+        Map<String, String> valuesToUpdate = new Map<String, String>{
+        'packingArea1__c' => 'YES',
+        'packingArea2__c' => 'NO',
+        'packingArea3__c' => 'YES'
+        };
+        Test.startTest();
+        Response resp = ShipmentController.updateChecklistValues(pcId,valuesToUpdate);
+        Test.stopTest();
+    }
+
 
     @isTest
     private static void testGetIconMapObject(){
@@ -93,7 +108,5 @@ public with sharing class TestShipmentController {
         Assert.areEqual(false, containsWarning, '"Warning" is not expected');
         Assert.areEqual(true, containsSuccess, 'No "Success", but expected');
     }
-
-
 
 }

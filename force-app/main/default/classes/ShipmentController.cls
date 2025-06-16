@@ -2,8 +2,7 @@
  * @description The only controller in the app. Used in LWC
  * @author Mykola Kanunnikov (Nick Eve)
  */
-public with sharing class ShipmentController {
-
+    public with sharing class ShipmentController {
     /**
      * @description It's a service method for click handler on every reference item
      * If statement for testing is needed since NamespacePrefix is not writable.
@@ -30,7 +29,6 @@ public with sharing class ShipmentController {
         }
         return resp;
     }
-
     /**
      * @description It provides checklist id for further use
      * @param  recordId id of current freight container
@@ -50,7 +48,6 @@ public with sharing class ShipmentController {
         }
         return resp;
     }
-
     /**
      * @description It gives actual checklist values to display
      * The method is so long since dynamic query is not used to avoid SOQL injections
@@ -117,7 +114,6 @@ public with sharing class ShipmentController {
         }
         return resp;
     }
-
     /**
      * @description It updates values of checklists
      * @param  currentChecklistId id of the proper object
@@ -140,7 +136,22 @@ public with sharing class ShipmentController {
         }
         return resp;
     }
-
+    // update all values at once
+    @AuraEnabled
+    public static Response updateChecklistValues(String checklist, Map<String, String> values) {
+        Response resp = new Response();
+        try {
+            Packing_checklist__c pc = new Packing_checklist__c(Id = checklist);
+            for (String key : values.keySet()) {
+                pc.put(key, values.get(key));
+            }
+            SObjectAccessDecision decision = Security.stripInaccessible(AccessType.UPDATABLE, new List<Packing_checklist__c>{pc});
+            update decision.getRecords();
+        } catch (Exception e) {
+            resp = new Response(e);
+        }
+        return resp;
+    }
     /**
      * @description It instantiates an object, that contains icon-name
      * for checklistTabset LWC

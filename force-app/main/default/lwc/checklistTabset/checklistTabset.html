@@ -1,29 +1,38 @@
 <template>
     <lightning-tabset variant={tabsetVariant}>
-        <lightning-tab label="1. The packing area" icon-name={iconName.packingArea} onactive={letUpdateIcons}>
-            <c-question-list record-id={recordId} questions={packingArea} fields="packingArea"></c-question-list>
-        </lightning-tab>
-        <lightning-tab label="2. Container condition" icon-name={iconName.containerCondition} onactive={letUpdateIcons}>
-            <c-question-list record-id={recordId} questions={containerCondition} fields="containerCondition"></c-question-list>
-        </lightning-tab>
-        <lightning-tab label="3. Packing the container" icon-name={iconName.packingContainer} onactive={letUpdateIcons}>
-            <c-question-list record-id={recordId} questions={packingContainer} fields="packingContainer"></c-question-list>
-        </lightning-tab>
-        <lightning-tab label="4. Dangerous goods" icon-name={iconName.dangerousGoods} onactive={letUpdateIcons}>
-            <c-question-list record-id={recordId} questions={dangerousGoods} fields="dangerousGoods"></c-question-list>
-        </lightning-tab>
-        <lightning-tab label="5. Before closing the doors" icon-name={iconName.afterPacking} onactive={letUpdateIcons}>
-            <c-question-list record-id={recordId} questions={afterPacking} fields="afterPacking"></c-question-list>
-        </lightning-tab>
-        <lightning-tab label="6. Closing the container" icon-name={iconName.closingContainer} onactive={letUpdateIcons}>
-            <c-question-list record-id={recordId} questions={closingContainer} fields="closingContainer"></c-question-list>
-        </lightning-tab>
-        <lightning-tab label="7. Dispatching the container" icon-name={iconName.dispatchingContainer} onactive={letUpdateIcons}>
-            <c-question-list record-id={recordId} questions={dispatchingContainer} fields="dispatchingContainer"></c-question-list>
-        </lightning-tab>
+        <template for:each={checklist} for:item="data">
+            <lightning-tab
+                key={data.section}
+                label={data.label}
+                icon-name={data.icon}
+            >
+                <c-question-list
+                    onsave={handleSave}
+                    record-id={recordId}
+                    questions={data.items}
+                    fields={data.section}
+                ></c-question-list>
+            </lightning-tab>
+        </template>
     </lightning-tabset>
     <lightning-card>
-        <p class="slds-p-horizontal_small">Complete the checklist for each container to be packed. <strong>If ANY of the answers are “NO”, stop packing, alert your supervisor. DO NOT dispatch the container.</strong></p>
-        <p slot="footer" style="text-align: justify;">Copyright to the CIG CTU Code: Container Packing Checklist September 2022 is jointly held by the partners of the Cargo Integrity Group, comprising Bureau International des Containers et du Transport Intermodal (BIC), Container Owners Association (COA), International Federation of Freight Forwarders Associations (FIATA), Global Shippers Forum (GSF), International Cargo Handling Coordination Association (ICHCA International), TT Club and World Shipping Council (WSC). All rights reserved. All use, in any form or by any means, should appropriately attribute the copyright holders.</p>
+        <p class="slds-p-horizontal_small">
+            Complete the checklist for each container to be packed.
+            <strong
+                >If ANY of the answers are “NO”, stop packing, alert your
+                supervisor. DO NOT dispatch the container.</strong
+            >
+        </p>
+        <p slot="footer" style="text-align: justify">
+            Copyright to the CIG CTU Code: Container Packing Checklist September
+            2022 is jointly held by the partners of the Cargo Integrity Group,
+            comprising Bureau International des Containers et du Transport
+            Intermodal (BIC), Container Owners Association (COA), International
+            Federation of Freight Forwarders Associations (FIATA), Global
+            Shippers Forum (GSF), International Cargo Handling Coordination
+            Association (ICHCA International), TT Club and World Shipping
+            Council (WSC). All rights reserved. All use, in any form or by any
+            means, should appropriately attribute the copyright holders.
+        </p>
     </lightning-card>
 </template>

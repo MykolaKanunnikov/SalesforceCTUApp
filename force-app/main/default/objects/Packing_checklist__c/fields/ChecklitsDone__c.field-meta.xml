@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ChecklitsDone__c</fullName>
-    <deprecated>false</deprecated>
     <externalId>false</externalId>
     <formula>IF( AND( packingAreaDone__c, containerConditionDone__c, packingContainerDone__c,     dangerousGoodsDone__c,  afterPackingDone__c,  closingContainerDone__c,  dispatchingContainerDone__c   ), 
 true, 
