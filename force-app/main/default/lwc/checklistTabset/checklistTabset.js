@@ -222,54 +222,16 @@ const inspectionChecklist = [
     }
 ];
 
-function getIcons(recordId) {
-    return getIconMapObject({ recordId })
-        .then((resp) => {
-            if (resp.isSuccess) {
-                return resp.responseObj;
-            }
-            this.dispatchEvent(
-                new ShowToastEvent({
-                    title: "Status icons JS error",
-                    variant: "error",
-                    message: resp.responseObj
-                })
-            );
-            return {};
-        })
-        .catch((error) => {
-            this.dispatchEvent(
-                new ShowToastEvent({
-                    title: "Status icons Apex error",
-                    variant: "error",
-                    message: "Error: " + error.body.message
-                })
-            );
-            return {};
-        });
-}
-
-function buildChecklistWithIcons(recordId) {
-    return getIcons(recordId).then((iconMap) =>
-        inspectionChecklist.map((section) => ({
-            ...section,
-            icon: iconMap[section.section] || "utility:question"
-        }))
-    );
-}
-
 export default class ChecklistTabset extends LightningElement {
     @api recordId;
     checklist;
 
     connectedCallback() {
-        this.buildChecklistWithIcons(this.recordId).then((result) => {
-            this.checklist = result;
-        });
+        this.buildChecklistWithIcons();
     }
 
-    getIcons(recordId) {
-        return getIconMapObject({ recordId })
+    getIcons() {
+        return getIconMapObject({ recordId: this.recordId })
             .then((resp) => {
                 if (resp.isSuccess) {
                     return resp.responseObj;
@@ -277,37 +239,32 @@ export default class ChecklistTabset extends LightningElement {
                 this.dispatchEvent(
                     new ShowToastEvent({
                         title: "Status icons JS error",
-                        variant: "error",
-                        message: resp.responseObj
+                        variant: "error"
                     })
                 );
-                return {};
             })
             .catch((error) => {
                 this.dispatchEvent(
                     new ShowToastEvent({
                         title: "Status icons Apex error",
-                        variant: "error",
-                        message: "Error: " + error.body.message
+                        variant: "error"
                     })
                 );
-                return {};
             });
     }
 
-    buildChecklistWithIcons(recordId) {
-        return getIcons(recordId).then((iconMap) =>
-            inspectionChecklist.map((section) => ({
-                ...section,
-                icon: iconMap[section.section] || "utility:question"
-            }))
+    buildChecklistWithIcons() {
+        this.getIcons().then(
+            (iconMap) =>
+                (this.checklist = inspectionChecklist.map((section) => ({
+                    ...section,
+                    icon: iconMap[section.section] || "utility:question"
+                })))
         );
     }
 
     handleSave() {
-        this.buildChecklistWithIcons(this.recordId).then((result) => {
-            this.checklist = result;
-        });
+        this.buildChecklistWithIcons();
     }
     // vertical variant isn't a good fit for small-sized phones and tablets
     get tabsetVariant() {

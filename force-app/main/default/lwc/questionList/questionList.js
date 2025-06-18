@@ -1,7 +1,6 @@
 import { api, LightningElement } from "lwc";
 import getCurrentChecklistId from "@salesforce/apex/ShipmentController.getCurrentChecklistId";
 import getChecklistValues from "@salesforce/apex/ShipmentController.getChecklistValues";
-import { ShowToastEvent } from "lightning/platformShowToastEvent";
 
 export default class QuestionList extends LightningElement {
     @api recordId;
