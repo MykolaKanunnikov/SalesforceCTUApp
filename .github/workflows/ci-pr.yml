@@ -1,12 +1,13 @@
 name: CI on PR
 
 on:
+    # Enable manual triggering 
     workflow_dispatch:
     pull_request:
         types: [opened, edited, synchronize, reopened]
 
 jobs:
-    salesforce-code-analyzer-workflow:
+    code-validation:
         runs-on: ubuntu-latest
         steps:
             - name: Check out files
@@ -31,3 +32,38 @@ jobs:
               if: |
                 steps.run-code-analyzer.outputs.num-sev1-violations > 0
               run: exit 1
+              
+            # Store secret for dev hub
+            - name: 'Populate auth file with DEVHUB_AUTH_URL secret'
+              shell: bash
+              run: |
+                  echo ${{ secrets.DEVHUB_AUTH_URL }} > ./DEVHUB_AUTH_URL.txt
+                  secretFileSize=$(wc -c "./DEVHUB_AUTH_URL.txt" | awk '{print $1}')
+                  if [ $secretFileSize == 1 ]; then
+                      echo "Missing DEVHUB_AUTH_URL secret. Is this workflow running on a fork?";
+                      exit 1;
+                  fi
+                  
+            # Authenticate dev hub
+            - name: 'Authenticate Dev Hub'
+              run: sf org login sfdx-url -f ./DEVHUB_AUTH_URL.txt --alias devhub --set-default-dev-hub
+
+            # Create scratch org
+            - name: 'Create scratch org'
+              run: sf org create scratch -f config/project-scratch-def.json --set-default --alias scratch-org --duration-days 1
+
+            # Deploy source to scratch org
+            - name: 'Push source to scratch org'
+              run: sf project deploy start
+
+            # Assign permissionset
+            - name: 'Assign permissionset to default user'
+              run: sf org assign permset --name CTU_User
+
+            # Run Apex tests in scratch org
+            - name: 'Run Apex tests'
+              run: sf apex run test --wait 10 --test-level RunLocalTests --code-coverage --result-format human --output-dir ./tests/apex
+            
+            - name: 'Delete scratch org'
+              run: sf org delete scratch --no-prompt      
+
