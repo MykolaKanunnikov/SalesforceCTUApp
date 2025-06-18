@@ -1,0 +1,10 @@
+<template>
+  <template for:each={questions} for:item="question">
+    <c-question-item
+      key={question.fieldId}
+      question={question}
+      values={values}
+      checklist={currentChecklistId}
+    ></c-question-item>
+  </template>
+</template>
