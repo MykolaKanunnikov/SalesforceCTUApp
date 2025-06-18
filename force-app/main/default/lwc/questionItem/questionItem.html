@@ -9,10 +9,11 @@
                     padding="horizontal-small"
                 >
                     <c-question-answer
+                        onsave={handleSave}
                         checklist={checklist}
                         title={question.name}
-                        field-value={question.fieldId}
-                        field-path={question.fieldId}
+                        field-value={question.fieldApiName}
+                        field-path={question.fieldApiName}
                         values={values}
                     >
                     </c-question-answer>
@@ -22,7 +23,7 @@
                     padding="around-large"
                 >
                     <c-reference-button
-                        reference={question.buttonId}
+                        reference={question.referenceId}
                     ></c-reference-button>
                 </lightning-layout-item>
             </lightning-layout>

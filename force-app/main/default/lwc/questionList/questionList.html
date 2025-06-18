@@ -1,7 +1,8 @@
 <template>
     <template for:each={questions} for:item="question">
         <c-question-item
-            key={question.fieldId}
+            onsave={handleSave}
+            key={question.fieldApiName}
             question={question}
             values={values}
             checklist={currentChecklistId}
