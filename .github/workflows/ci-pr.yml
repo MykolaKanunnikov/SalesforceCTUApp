@@ -30,7 +30,9 @@ jobs:
 
             - name: Check the outputs to determine whether to fail
               if: |
-                steps.run-code-analyzer.outputs.num-sev1-violations > 0
+                steps.run-code-analyzer.outputs.exit-code > 0 ||
+                steps.run-code-analyzer.outputs.num-sev1-violations > 0 ||
+                steps.run-code-analyzer.outputs.num-sev2-violations > 0
               run: exit 1
               
             # Store secret for dev hub
