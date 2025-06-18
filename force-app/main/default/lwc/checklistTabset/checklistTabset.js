@@ -244,6 +244,7 @@ export default class ChecklistTabset extends LightningElement {
                 );
             })
             .catch((error) => {
+                console.error(error);
                 this.dispatchEvent(
                     new ShowToastEvent({
                         title: "Status icons Apex error",
