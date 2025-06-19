@@ -73,7 +73,8 @@ public with sharing class ShipmentController {
                           WITH SECURITY_ENFORCED];
             } else if (fields == 'containerCondition'){
                 values = [SELECT ctuapptest__containerCondition8__c, ctuapptest__containerCondition9__c, 
-                                 ctuapptest__containerCondition10__c
+                                 ctuapptest__containerCondition10__c,ctuapptest__containerCondition11__c,
+                                 ctuapptest__containerCondition12__c
                           FROM Packing_checklist__c
                           WHERE Id =: currentChecklistId
                           WITH SECURITY_ENFORCED];                
