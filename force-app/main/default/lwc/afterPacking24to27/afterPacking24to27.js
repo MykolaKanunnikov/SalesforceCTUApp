@@ -1,2 +1,4 @@
-import { LightningElement } from "lwc";
-export default class AfterPacking24to27 extends LightningElement {}
+import { LightningElement, api } from "lwc";
+export default class AfterPacking24to27 extends LightningElement {
+    @api recordId;
+}
