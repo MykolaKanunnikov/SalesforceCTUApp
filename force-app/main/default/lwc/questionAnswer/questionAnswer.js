@@ -36,7 +36,14 @@ export default class QuestionAnswer extends LightningElement {
         })
             .then((resp) => {
                 if (resp.isSuccess) {
-                    this.dispatchEvent(new CustomEvent("save"));
+                    this.dispatchEvent(
+                        new CustomEvent("save", {
+                            detail: {
+                                newValue: newValue,
+                                fieldReference: fieldReference
+                            }
+                        })
+                    );
                 }
             })
             .catch((error) => {

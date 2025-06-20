@@ -7,7 +7,14 @@ export default class QuestionItem extends NavigationMixin(LightningElement) {
     @api recordId;
     @api checklist;
 
-    handleSave() {
-        this.dispatchEvent(new CustomEvent("save"));
+    handleSave(event) {
+        this.dispatchEvent(
+            new CustomEvent("save", {
+                detail: {
+                    newValue: event.detail.newValue,
+                    fieldReference: event.detail.fieldReference
+                }
+            })
+        );
     }
 }

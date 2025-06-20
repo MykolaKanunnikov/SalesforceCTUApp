@@ -225,6 +225,7 @@ const inspectionChecklist = [
 export default class ChecklistTabset extends LightningElement {
     @api recordId;
     checklist;
+    icons;
 
     connectedCallback() {
         this.buildChecklistWithIcons();
@@ -234,6 +235,7 @@ export default class ChecklistTabset extends LightningElement {
         return getIconMapObject({ recordId: this.recordId })
             .then((resp) => {
                 if (resp.isSuccess) {
+                    this.icons = resp.responseObj;
                     return resp.responseObj;
                 }
                 this.dispatchEvent(
@@ -264,8 +266,14 @@ export default class ChecklistTabset extends LightningElement {
         );
     }
 
-    handleSave() {
-        this.buildChecklistWithIcons();
+    handleIconSetup(event) {
+        const data = this.checklist.map((item) => {
+            if (item.section === event.detail.section) {
+                item.icon = event.detail.icon;
+            }
+            return item;
+        });
+        this.checklist = data;
     }
     // vertical variant isn't a good fit for small-sized phones and tablets
     get tabsetVariant() {
