@@ -228,6 +228,7 @@ export default class ChecklistTabset extends LightningElement {
     @api recordId;
     testData;
     checklist;
+    icons;
 
     connectedCallback() {
         this.getData();
@@ -237,6 +238,7 @@ export default class ChecklistTabset extends LightningElement {
         return getIconMapObject({ recordId: this.recordId })
             .then((resp) => {
                 if (resp.isSuccess) {
+                    this.icons = resp.responseObj;
                     return resp.responseObj;
                 }
                 this.dispatchEvent(
