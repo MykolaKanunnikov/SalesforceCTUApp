@@ -1,12 +1,12 @@
 /**
  * @description Plain old Apex class
  * @author Mykola Kanunnikov (Nick Eve)
- */ 
+ */
 public with sharing class IconMapper {
     
     @AuraEnabled
     public String packingArea { get; set; }
-
+    
     @AuraEnabled
     public String containerCondition { get; set; }
     
@@ -24,10 +24,10 @@ public with sharing class IconMapper {
     
     @AuraEnabled
     public String dispatchingContainer { get; set; }
-
+    
     /**
-     * @description It's the only IconMapper constructor. 
-     * Its' object is needed to show relevant status icon in the Tabset LWC 
+     * @description It's the only IconMapper constructor.
+     * Its' object is needed to show relevant status icon in the Tabset LWC
      * @param  pc relevant Packing_checklist__c object
      */
     public IconMapper(Packing_checklist__c pc) {
@@ -39,7 +39,7 @@ public with sharing class IconMapper {
         this.closingContainer = IconMapper.setIcon(pc.closingContainerDone__c, pc.closingContainerNo__c);
         this.dispatchingContainer = IconMapper.setIcon(pc.dispatchingContainerDone__c, pc.dispatchingContainerNo__c);
     }
-
+    
     /**
      * @description setIcon helps to populate IconMapper object fields
      * @param  stageDone formula filed value

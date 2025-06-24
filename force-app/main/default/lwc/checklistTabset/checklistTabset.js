@@ -6,6 +6,8 @@ import { LightningElement, api } from "lwc";
 import formFactor from "@salesforce/client/formFactor";
 import getIconMapObject from "@salesforce/apex/ShipmentController.getIconMapObject";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
+import getChecklistData from "@salesforce/apex/ChecklistDataWrapper.getChecklistData";
+
 
 const inspectionChecklist = [
     {
@@ -224,16 +226,19 @@ const inspectionChecklist = [
 
 export default class ChecklistTabset extends LightningElement {
     @api recordId;
+    testData;
     checklist;
+    icons;
 
     connectedCallback() {
-        this.buildChecklistWithIcons();
+        this.getData();
     }
 
     getIcons() {
         return getIconMapObject({ recordId: this.recordId })
             .then((resp) => {
                 if (resp.isSuccess) {
+                    this.icons = resp.responseObj;
                     return resp.responseObj;
                 }
                 this.dispatchEvent(
@@ -254,18 +259,30 @@ export default class ChecklistTabset extends LightningElement {
             });
     }
 
-    buildChecklistWithIcons() {
-        this.getIcons().then(
+    getData(){
+        getChecklistData({recordId: this.recordId}).then(resp=>
+            this.checklist = resp.responseObj
+        )
+    }
+
+     buildChecklistWithIcons() {
+         this.getIcons().then(
             (iconMap) =>
-                (this.checklist = inspectionChecklist.map((section) => ({
+                this.checklist = inspectionChecklist.map((section) => ({
                     ...section,
                     icon: iconMap[section.section] || "utility:question"
-                })))
+                }))
         );
     }
 
-    handleSave() {
-        this.buildChecklistWithIcons();
+    handleIconSetup(event) {
+        const data = this.checklist.map((item) => {
+            if (item.section === event.detail.section) {
+                item.icon = event.detail.icon;
+            }
+            return item;
+        });
+        this.checklist = data;
     }
     // vertical variant isn't a good fit for small-sized phones and tablets
     get tabsetVariant() {
